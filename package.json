@@ -22,9 +22,7 @@
   },
   "homepage": "https://github.com/MAsuamah/puppy-love#readme",
   "dependencies": {
-    "apollo-server-express": "^3.0.1",
     "concurrently": "^6.2.0",
-    "graphql": "^15.5.1",
     "if-env": "^1.0.4"
   }
 }
