@@ -7,14 +7,14 @@ const resolvers = {
       helloWorld: () => {
         return 'Hello world!';
       },
-      me: async (parent, args, context => {
+      me: async(parent, args, context) => {
         if(context.user) {
           const userData = await User.findOne({ _id: context.user._id })
             .select('-__v -password')
             .populate('savedBooks')
             return userData;
         } throw new AuthenticationError('Not logged in');
-      })
+      }
     },
     Mutation: {
       login: async(parent, { email, password }) => {

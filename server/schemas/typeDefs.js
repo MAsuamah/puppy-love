@@ -2,50 +2,56 @@
 const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
-  type User {
+
+  type Query {
+    helloWorld: String
+    me: User
+    user(username: String!): User
+    dogs(username:String!): Dog
+    dog(_id: ID): Dog
+  }
+  type Mutation {
+    login(email: String!, password: String!): Auth
+    addUser(username: String!, email: String!, password: String!): Auth
+    addDog(username: String, name: String, breed: String, age: Int): Dog
+    removeDog(_id: ID): Dog
+  }
+  type Dog{
+    _id: ID
+    name: String
+    breed: String
+    owner: ID
+    age: Int
+    friends: [Dog]
+    images: [Image]
+  }
+  type User{
     _id: ID
     username: String
     email: String
     password: String
     address: String
-    pets: [Pet]
-  }
-  type Pet {
-    _id: ID
-    name: String
-    breed: String
-    gender: String
-    age: Int
-    friends: [Pet]
-    images: [Image]
-    dates: [Date!]
-  }
-  type Dates {
-    _id: ID
-    daters: [Pet!]
-    day: String
+    dogs: [Dog]
   }
   type Image{
     _id: ID
     link: String
-    comments: [String]
+    caption: String
+    comments: [ Comment]
+    username: String
   }
   type Comment{
-    _ID: id
-    userId: ID
+    _id: ID
+    commentText: String
+    createdAt: String
+    username: String
   }
-  type Query {
-    helloWorld: String
-    me: User
-    user(_id: ID!): User
-    date(_id: ID!, pet1: ID, pet2: ID): Date
-    pet(_id: ID!, name: String): Pet
+  type Auth{
+    token: ID!
+    user: User
   }
-  type Mutation {
-    login(email: String!, password: String!): Auth
-    addUser(email. String!, username: String!, password: String!, address: String, pets: [Pet]): Auth
-    addPet(name: String, breed: String, gender: String, age: Int )
-  }
+  
+
 `;
 module.exports = typeDefs;
 
