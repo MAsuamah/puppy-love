@@ -12,14 +12,24 @@ const typeDefs = gql`
   }
   type Mutation {
     login(email: String!, password: String!): Auth
-    addUser(username: String!, email: String!, password: String!): Auth
-    addDog(username: String, name: String, breed: String, age: Int): Dog
+    addUser(username: String!, email: String!, password: String!, city: String): Auth
+    updateUser(_id: ID, username: String!, email: String!, password: String!, city: String): Auth
+    deleteUser(email: String!, password: String!): Auth
+    addDog(username: String, name: String, gender: String, breed: String, age: Int): Dog
+    updateDog(_id: ID, name: String, gender: String, breed: String, age: Int): Dog
     removeDog(_id: ID): Dog
+    addImage(): Image
+    deleteImage():
+    addComment():
+    deleteComment():
+    addReply():
+    deleteReply():
   }
   type Dog{
     _id: ID
     name: String
     breed: String
+    gender: String
     owner: ID
     age: Int
     friends: [Dog]
@@ -30,7 +40,7 @@ const typeDefs = gql`
     username: String
     email: String
     password: String
-    address: String
+    city: String
     dogs: [Dog]
   }
   type Image{
@@ -43,6 +53,7 @@ const typeDefs = gql`
   type Comment{
     _id: ID
     commentText: String
+    replies: [String]
     createdAt: String
     username: String
   }
