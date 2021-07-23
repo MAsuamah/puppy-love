@@ -5,20 +5,30 @@ const typeDefs = gql`
   type Query {
     helloWorld: String
     me: User
-    user(username: String!): User
-    dogs(username:String!): Dog
-    dog(_id: ID): Dog
+    dogs: [Dog]
+    dog: Dog
   }
   type Mutation {
     login(email: String!, password: String!): Auth
-    addUser(username: String!, email: String!, password: String!): Auth
-    addDog(username: String, name: String, breed: String, age: Int): Dog
-    removeDog(_id: ID): Dog
+    addUser(username: String!, email: String!, password: String!, city: String): Auth
+    updateUser(_id: ID, username: String!, email: String!, password: String!, city: String): Auth
+    deleteUser(email: String!, password: String!): Auth
+    addDog(username: String, name: String, gender: String, breed: String, age: Int): Dog
+    updateDog(_id: ID, name: String, gender: String, breed: String, age: Int): Dog
+    deleteDog(_id: ID): Dog
+    addImage(link: String!, caption: String, username: String!): Image
+    updateImageCaption(_id:ID, link: String!, caption: String, username: String!): Image
+    deleteImage(_id: ID): Image
+    addComment(commentText: String!, username: String!): Comment
+    deleteComment(_id: ID): Comment 
+    addReply(_id: ID, username: String!): Comment
+    deleteReply(_id: ID): Comment
   }
   type Dog{
     _id: ID
     name: String
     breed: String
+    gender: String
     owner: ID
     age: Int
     friends: [Dog]
@@ -29,7 +39,7 @@ const typeDefs = gql`
     username: String
     email: String
     password: String
-    address: String
+    city: String
     dogs: [Dog]
   }
   type Image{
@@ -42,6 +52,7 @@ const typeDefs = gql`
   type Comment{
     _id: ID
     commentText: String
+    replies: [String]
     createdAt: String
     username: String
   }

@@ -14,7 +14,10 @@ const resolvers = {
             .populate('savedBooks')
             return userData;
         } throw new AuthenticationError('Not logged in');
-      }
+      },
+      user: async(parent, args, context) => {},
+      dogs: async(parent, args, context) => {},
+      dog: async(parent, args, context) => {},
     },
     Mutation: {
       login: async(parent, { email, password }) => {
@@ -33,7 +36,19 @@ const resolvers = {
         const user = await User.create(args);
         const token = signToken(user);
         return { user, token };
-      }
+      },
+      updateUser: async(parent, args, context) => {},
+      deleteUser: async(parent, args, context) => {},
+      addDog: async(parent, args, context) => {},
+      updateDog: async(parent, args, context) => {},
+      deleteDog: async(parent, args, context) => {},
+      addImage: async(parent, args, context) => {},
+      updateImageCaption: async(parent, args, context) => {},
+      deleteImage: async(parent, args, context) => {},
+      addComment: async(parent, args, context) => {},
+      deleteComment: async(parent, args, context) => {},
+      addReply: async(parent, args, context) => {},
+      deleteReply: async(parent, args, context) => {},
     }
 
   };
