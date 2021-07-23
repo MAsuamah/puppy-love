@@ -18,12 +18,12 @@ const typeDefs = gql`
     addDog(username: String, name: String, gender: String, breed: String, age: Int): Dog
     updateDog(_id: ID, name: String, gender: String, breed: String, age: Int): Dog
     removeDog(_id: ID): Dog
-    addImage(): Image
-    deleteImage():
-    addComment():
-    deleteComment():
-    addReply():
-    deleteReply():
+    addImage(link: String!, caption: String, username: String!): Image
+    deleteImage(_id: ID): Image
+    addComment(commentText: String!, username: String!): Comment
+    deleteComment(_id: ID): Comment 
+    addReply(_id: ID, username: String!): Comment
+    deleteReply(_id: ID): Comment
   }
   type Dog{
     _id: ID
