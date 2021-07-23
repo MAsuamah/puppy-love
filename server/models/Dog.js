@@ -25,7 +25,7 @@ const dogSchema = new Schema(
             },
         friends:[{
             type: Schema.Types.ObjectId,
-            ref: 'User' 
+            ref: 'Dog' 
         }],
         images:[{
             type: Schema.Types.ObjectId,
