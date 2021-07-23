@@ -63,6 +63,6 @@ commentSchema.virtual('repliesCount').get(function () {
     return this.replies.length;
   });
 
-const Comment = model('Dog', commentSchema);
+const Comment = model('Comment', commentSchema);
 
 module.exports = Comment;
