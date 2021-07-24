@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
-import Navbar from 'react-bootstrap/Navbar'
 import { Link } from 'react-router-dom';
 import Container from 'react-bootstrap/Container'
-import Tab from 'react-bootstrap/Tab'
+import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
+import Tab from 'react-bootstrap/Tab'
 import Modal from 'react-bootstrap/Modal'
 import { FaPaw } from 'react-icons/fa';
 import SignUpForm from './SignupForm';
 import LoginForm from './LoginForm';
+import '../assets/styles/Navbar.css'
 
 import Auth from '../utils/auth';
 
