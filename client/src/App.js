@@ -1,4 +1,6 @@
 import React from 'react';
+import Navbar from './components/Navbar';
+import UserProfile from './pages/UserProfile';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { ApolloProvider, ApolloClient } from '@apollo/client';
 function App() {
@@ -7,8 +9,7 @@ function App() {
 				<>
 					<Navbar />
 					<Switch>
-							<Route exact path='/' component={UserProfile} />
-							<Route render={() => <h1 className='display-2'>Wrong page!</h1>} />
+
 					</Switch>
 				</>
 		</Router>
