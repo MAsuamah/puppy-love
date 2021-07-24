@@ -3,7 +3,7 @@ import { Jumbotron, Container, Row, Image, Form, Button} from 'react-bootstrap';
 
 import Auth from '../utils/auth';
 
-const SavedBooks = () => {
+const DogImage = () => {
 
     return (
         <>
@@ -36,3 +36,5 @@ const SavedBooks = () => {
         </>
     )
 };
+
+export default DogImage;
