@@ -5,4 +5,16 @@
   background-position: right;
   background-repeat: no-repeat;
   height: 93vh;
+  color: white; 
+}
+
+#user-info {
+  display: flex;
+  position: relative;
+  left: 35vh;
+}
+
+.user-icons {
+  padding: 20px;
+  font-size: 25px;
 }
