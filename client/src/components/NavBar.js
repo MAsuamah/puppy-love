@@ -5,6 +5,7 @@ import Container from 'react-bootstrap/Container'
 import Tab from 'react-bootstrap/Tab'
 import Nav from 'react-bootstrap/Nav'
 import Modal from 'react-bootstrap/Modal'
+import { FaPaw } from 'react-icons/fa';
 import SignUpForm from './SignupForm';
 import LoginForm from './LoginForm';
 
@@ -19,13 +20,13 @@ const AppNavbar = () => {
       <Navbar bg='dark' variant='dark' expand='lg'>
         <Container fluid>
           <Navbar.Brand as={Link} to='/'>
-            Google Books Search
+            Puppy Love <FaPaw />
           </Navbar.Brand>
           <Navbar.Toggle aria-controls='navbar' />
           <Navbar.Collapse id='navbar'>
             <Nav className='ml-auto'>
               <Nav.Link as={Link} to='/'>
-                Search For Books
+                Add a Pet
               </Nav.Link>
               {/* if user is logged in show saved books and logout */}
               {Auth.loggedIn() ? (
