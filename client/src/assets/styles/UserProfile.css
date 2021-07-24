@@ -1,17 +1,11 @@
 .user-profile {
-  background-color: #212529;
-  background-image: url(../images/taylor-kopel-WX4i1Jq_o0Y-unsplash.jpg);
-  background-size: contain;
-  background-position: right;
-  background-repeat: no-repeat;
-  height: 93vh;
-  color: white; 
+  margin-top: 30px;
 }
 
 #user-info {
   display: flex;
   position: relative;
-  left: 35vh;
+  left: 35%;
 }
 
 .user-icons {

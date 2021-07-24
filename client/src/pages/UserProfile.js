@@ -19,6 +19,9 @@ const UserProfile = () => {
           <p><MdLocationCity /> City</p>
         </div>
       </div>
+      <section className="dog-list">
+      
+      </section>
     </div>
   );
 };
