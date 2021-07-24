@@ -12,3 +12,17 @@
   padding: 20px;
   font-size: 25px;
 }
+
+.update-user {
+  display: flex;
+  justify-content: center;
+}
+
+.user-btn {
+  margin: 15px;
+}
+
+.dog-list {
+  display: flex;
+  justify-content: center;
+}

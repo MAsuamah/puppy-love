@@ -3,6 +3,7 @@ import '../assets/styles/UserProfile.css'
 import {FaRegUserCircle} from 'react-icons/fa';
 import {FiMail} from 'react-icons/fi';
 import {MdLocationCity} from 'react-icons/md';
+import Button from 'react-bootstrap/Button'
 
 const UserProfile = () => {
 
@@ -19,9 +20,13 @@ const UserProfile = () => {
           <p><MdLocationCity /> City</p>
         </div>
       </div>
-      <section className="dog-list">
-      
+      <section className="dog-list"> 
+        Dog List Here
       </section>
+      <div className='update-user'>
+        <Button className='user-btn' variant="dark">Update Account</Button>{' '}
+        <Button className='user-btn' variant="danger">Delete Account</Button>       
+      </div>
     </div>
   );
 };
