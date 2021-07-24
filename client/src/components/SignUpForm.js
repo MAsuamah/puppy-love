@@ -5,6 +5,11 @@ import Auth from '../utils/auth';
 import { ADD_USER } from '../utils/mutations'; */
 
 const SignupForm = () => {
+  //Styling for Submit Button
+  const submit = {
+    marginTop: '10px'
+  }
+
   // set initial form state
   const [userFormData, setUserFormData] = useState({ username: '', email: '', password: '' });
 
@@ -99,9 +104,10 @@ const SignupForm = () => {
           <Form.Control.Feedback type='invalid'>Password is required!</Form.Control.Feedback>
         </Form.Group>
         <Button
+          style={submit}
           disabled={!(userFormData.username && userFormData.email && userFormData.password)}
           type='submit'
-          variant='success'>
+          variant='dark'>
           Submit
         </Button>
       </Form>

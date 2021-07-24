@@ -6,6 +6,11 @@ import Auth from '../utils/auth';
 import { LOGIN_USER } from '../utils/mutations';
  */
 const LoginForm = () => {
+  //Styling for Submit Button
+  const submit = {
+    marginTop: '10px'
+  }
+
   const [userFormData, setUserFormData] = useState({ email: '', password: '' });
   const [validated] = useState(false);
   const [showAlert, setShowAlert] = useState(false)
@@ -78,9 +83,10 @@ const LoginForm = () => {
           <Form.Control.Feedback type='invalid'>Password is required!</Form.Control.Feedback>
         </Form.Group>
         <Button
+          style={submit}
           disabled={!(userFormData.email && userFormData.password)}
           type='submit'
-          variant='success'>
+          variant='dark'>
           Submit
         </Button>
       </Form>
