@@ -10,6 +10,7 @@ import SignUpForm from './SignupForm';
 import LoginForm from './LoginForm';
 
 import Auth from '../utils/auth';
+import { BsTextRight } from 'react-icons/bs';
 
 const AppNavbar = () => {
   // set modal display state
@@ -24,7 +25,7 @@ const AppNavbar = () => {
           </Navbar.Brand>
           <Navbar.Toggle aria-controls='navbar' />
           <Navbar.Collapse id='navbar'>
-            <Nav className='ml-auto'>
+            <Nav className='ms-auto'>
               <Nav.Link as={Link} to='/'>
                 Add a Pet
               </Nav.Link>
