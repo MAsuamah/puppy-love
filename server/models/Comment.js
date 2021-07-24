@@ -1,7 +1,7 @@
 const { Schema, model, Types } = require('mongoose');
 const dateFormat = require("../utils/dateFormat");
 
-const replySchema = new Schema({
+/* const replySchema = new Schema({
     replyId:{
         type: Schema.Types.ObjectId,
         default: () => new Types.ObjectId()
@@ -26,7 +26,7 @@ const replySchema = new Schema({
     toJSON: {
         getters: true
         }
-});
+}); */ //will delete this commented code if no longer required.
 
 const commentSchema = new Schema(
     {
@@ -35,9 +35,6 @@ const commentSchema = new Schema(
             required: true,
             validator: (checkComment) => { return (checkComment.length < 280)},
             message: props => `Your comments need to be between 1 to 280 characters.`
-        },
-        caption:{
-            type: String,
         },
         createdAt:{
             type: Date,
@@ -48,7 +45,7 @@ const commentSchema = new Schema(
             type: String,
             required: true,
             ref: 'User' },
-        replies:[replySchema]
+        replies:[commentSchema]
     },
 // set this to use virtual below
 {

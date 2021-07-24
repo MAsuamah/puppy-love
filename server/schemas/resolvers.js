@@ -1,4 +1,4 @@
-const { User, Dog, Dates, Image} = require('../models');
+const { User, Dog, Dates, Image, Comment} = require('../models');
 const { AuthenticationError } = require('apollo-server-express');
 const { signToken } = require('../utils/auth');
 
@@ -58,24 +58,18 @@ const resolvers = {
         const user = await User.findOneAndUpdate(
           { _id: context.user.id}, args, { new: true }
         );
-        const token = signToken(user);
-        return { user, token };
-
       },
       deleteUser: async(parent, args, context) => {
         const user = await User.findOneAndDelete(
           { _id:context.user.id}, args, { new: true }
         );
-        const token = signToken(user);
-        return { user, token };
       },
+
       addDog: async(parent, args, context) => {
         if(context.user) {
           const dog = new Dog({args});
 
           await User.findByIdAndUpdate({_id: context.user._id}, { $push: { dogs: dog}}, {new: true});
-          const token = signToken(dog);
-          return { dog, token };
         } throw new AuthenticationError('Not logged in');
       },
       updateDog: async(parent, {params, args}, context) => {
@@ -83,8 +77,6 @@ const resolvers = {
           const dog = await Dog.findOneAndUpdate(
             { _id: params.dogId}, args, { new: true }
           );
-          const token = signToken(dog);
-          return { dog, token };
         } throw new AuthenticationError('Not logged in');
       },
       // updateDog: async(parent, {params, args}, context) => {
@@ -99,8 +91,6 @@ const resolvers = {
           const dog = await Dog.findOneAndDelete(
             { _id: params.dogId }, args, { new: true }
           );
-          const token = signToken(dog);
-          return { dog, token };
         } throw new AuthenticationError('Not logged in');
       },
       // deleteDog: async(parent, {params, args}, context) => {
@@ -110,12 +100,12 @@ const resolvers = {
       //   const token = signToken(dog);
       //   return { dog, token };
       // },
+
+
       addImage: async(parent, { params, args }, context) => {
         if(context.user) {
           const image = Image({args});
           await Dog.findByIdAndUpdate({_id: params.dogId}, { $push: { images: image}},{new: true});
-          const token = signToken(image);
-          return { image, token };
         } throw new AuthenticationError('Not logged in');
       },
       updateImageCaption: async(parent, {params, args}, context) => {
@@ -123,8 +113,6 @@ const resolvers = {
           const image = await Image.findOneAndUpdate(
             { _id: params.imageId}, args, { new: true }
           );
-          const token = signToken(image);
-          return { image, token };
         } throw new AuthenticationError('Not logged in');
       },
       // updateImageCaption: async(parent, {params, args}, context) => {
@@ -139,29 +127,38 @@ const resolvers = {
           const image = await Image.findOneAndDelete(
             {_id: params.imageId}, args, { new: true }
           );
-          const token = signToken(image);
-          return { image, token};
         } throw new AuthenticationError('Not logged in');
       },
+
+
       addComment: async(parent, { params, args }, context) => {
         if(context.user) {
           const comment = Comment({args});
           await Image.findByIdAndUpdate({_id: params.imageId}, { $push: { comments: comment}},{new: true});
-          const token = signToken(comment);
-          return { comment, token };
         } throw new AuthenticationError('Not logged in');
       },
       deleteComment: async(parent, {params, args}, context) => {
         if(context.user) {
-          const comment = await comment.findOneAndDelete(
+          const comment = await Comment.findOneAndDelete(
             {_id: params.commentId}, args, { new: true }
           );
-          const token = signToken(comment);
-          return { comment, token};
+
         } throw new AuthenticationError('Not logged in');
       },
-      addReply: async(parent, args, context) => {},
-      deleteReply: async(parent, args, context) => {},
+
+      addReply: async(parent, args, context) => {
+        if(context.user) {
+          const comment = Comment({args});
+          await Comment.findByIdAndUpdate({_id: params._id}, { $push: { replies: comment}},{new: true});
+        } throw new AuthenticationError('Not logged in');
+      },
+      deleteReply: async(parent, args, context) => {
+        if(context.user) {
+          const comment = await Comment.findOneAndDelete(
+            {_id: params._id}, args, { new: true }
+          );
+        } throw new AuthenticationError('Not logged in');
+      },
     }
   };
   
