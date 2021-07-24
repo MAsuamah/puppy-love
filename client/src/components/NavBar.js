@@ -10,7 +10,6 @@ import SignUpForm from './SignupForm';
 import LoginForm from './LoginForm';
 
 import Auth from '../utils/auth';
-import { BsTextRight } from 'react-icons/bs';
 
 const AppNavbar = () => {
   // set modal display state
@@ -26,20 +25,20 @@ const AppNavbar = () => {
           <Navbar.Toggle aria-controls='navbar' />
           <Navbar.Collapse id='navbar'>
             <Nav className='ms-auto'>
-              <Nav.Link as={Link} to='/'>
-                Add a Pet
-              </Nav.Link>
               {/* if user is logged in show saved books and logout */}
-              {Auth.loggedIn() ? (
+             {/*  {Auth.loggedIn() ? ( */}
                 <>
-                  <Nav.Link as={Link} to='/saved'>
+                  <Nav.Link as={Link} to='/'>
                     Add a Pet
+                  </Nav.Link>
+                  <Nav.Link as={Link} to='/user-profile'>
+                    Your Profile
                   </Nav.Link>
                   <Nav.Link onClick={Auth.logout}>Logout</Nav.Link>
                 </>
-              ) : (
+              {/* ) : ( */}
                 <Nav.Link onClick={() => setShowModal(true)}>Login/Sign Up</Nav.Link>
-              )}
+             {/*  )} */}
             </Nav>
           </Navbar.Collapse>
         </Container>
