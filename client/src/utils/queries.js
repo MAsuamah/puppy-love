@@ -10,11 +10,27 @@ export const GET_ME = gql`
       dogs {
         _id
         name
+      }
+    }
+  }
+  `;
+
+  export const GET_DOGS = gql`
+{
+    me {
+      _id
+      dogs {
+        _id
+        name
         breed
         gender
         age
-        friends
-        images
+        friends {
+
+        }
+        images {
+            
+        }
       }
     }
   }
