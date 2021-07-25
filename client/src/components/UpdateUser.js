@@ -7,7 +7,7 @@ function UpdateUser() {
 
   return (
     <>
-      <Button onClick={() => setLgShow(true)} variant="dark">Update Account</Button>
+      <Button className='user-btn' onClick={() => setLgShow(true)} variant="dark">Update Account</Button>
       <Modal
         size="lg"
         show={lgShow}
