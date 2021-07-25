@@ -1,0 +1,41 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+.user-profile {
+  margin-top: 30px;
+}
+
+#user-info {
+  display: flex;
+  position: relative;
+  left: 35%;
+}
+
+.user-icons {
+  padding: 20px;
+  font-size: 25px;
+}
+
+.update-user {
+  display: flex;
+  justify-content: center;
+}
+
+.user-btn {
+  margin: 10px;
+} 
+
+#update-img {
+  width: 700px;
+  margin-bottom: 15px;
+  margin-left: 35px
+}
+
+.dog-list {
+  display: flex;
+  justify-content: center;
+}
