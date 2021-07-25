@@ -4,6 +4,7 @@ import {FaRegUserCircle} from 'react-icons/fa';
 import {FiMail} from 'react-icons/fi';
 import {MdLocationCity} from 'react-icons/md';
 import Button from 'react-bootstrap/Button'
+import UpdateUser from '../components/UpdateUser';
 
 const UserProfile = () => {
 
@@ -24,7 +25,7 @@ const UserProfile = () => {
         Dog List Here
       </section>
       <div className='update-user'>
-        <Button className='user-btn' variant="dark">Update Account</Button>{' '}
+        <UpdateUser />
         <Button className='user-btn' variant="danger">Delete Account</Button>       
       </div>
     </div>

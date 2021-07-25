@@ -26,8 +26,8 @@
 }
 
 .user-btn {
-  margin: 15px;
-}
+  margin-right: 15px;
+} 
 
 .dog-list {
   display: flex;
