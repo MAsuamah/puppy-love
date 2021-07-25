@@ -45,7 +45,10 @@ const commentSchema = new Schema(
             type: String,
             required: true,
             ref: 'User' },
-        replies:[commentSchema]
+        replies:[{
+                type: Schema.Types.ObjectId,
+                ref: 'Comment' 
+        }],
     },
 // set this to use virtual below
 {
