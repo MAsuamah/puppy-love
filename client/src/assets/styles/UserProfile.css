@@ -29,6 +29,12 @@
   margin: 10px;
 } 
 
+#update-img {
+  width: 700px;
+  margin-bottom: 15px;
+  margin-left: 35px
+}
+
 .dog-list {
   display: flex;
   justify-content: center;

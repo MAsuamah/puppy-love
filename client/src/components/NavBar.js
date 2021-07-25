@@ -19,14 +19,6 @@ const AppNavbar = () => {
   // set modal display state for Create Pet
   const [showPetModal, setShowPetModal] = useState(false);
 
-{/* Styling for Create Pet Modal*/}
-  const createPetImg = {
-    width: '725px',
-    height: '300px',
-    marginBottom: '15px',
-    marginLeft: '25px'
-  }
-
   return (
     <>
       <Navbar bg='dark' variant='dark' expand='lg'>
@@ -56,7 +48,7 @@ const AppNavbar = () => {
                       </Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                    <img style={createPetImg} src={require(`../assets/images/t-r-photography-TzjMd7i5WQI-unsplash.jpg`).default} alt="puppy peeking over a bed"></img>
+                    <img id="create-pet-img" src={require(`../assets/images/t-r-photography-TzjMd7i5WQI-unsplash.jpg`).default} alt="puppy peeking over a bed"></img>
                       <CreatePet />
                     </Modal.Body>
                   </Modal>

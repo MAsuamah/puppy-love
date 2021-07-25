@@ -7,12 +7,6 @@ import FloatingLabel from 'react-bootstrap/FloatingLabel'
 function UpdateUser() {
   const [lgShow, setLgShow] = useState(false);
 
-  const updateImg = {
-    width: '700px',
-    marginBottom: '15px',
-    marginLeft: '35px'
-  }
-
   return (
     <>
       <Button className='user-btn' onClick={() => setLgShow(true)} variant="dark">Update Account</Button>
@@ -28,7 +22,8 @@ function UpdateUser() {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <img style={updateImg} src={require(`../assets/images/josh-hild-tkn_izTEVGo-unsplash.jpg`).default} alt="dog owner holding their dog over there shoulder"></img>
+          <img id="update-img" src={require(`../assets/images/josh-hild-tkn_izTEVGo-unsplash.jpg`).default} alt="dog owner holding their dog over there shoulder"></img>
+          {/* FORM TO UPDATE USER*/}
           <Form>
             <FloatingLabel controlId="floatingEmail" label="Email address" className="mb-3">
               <Form.Control type="email" placeholder="name@example.com" />
@@ -41,7 +36,7 @@ function UpdateUser() {
             <FloatingLabel controlId="floatingCity" label="City" className="mb-3">
               <Form.Control type="city" placeholder="City" />
             </FloatingLabel>
-
+            {/* UPDATE USER BUTTON */}
             <Button variant="dark" type="submit">
               Update
             </Button>
