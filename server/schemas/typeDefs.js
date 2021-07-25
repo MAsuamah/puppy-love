@@ -32,8 +32,8 @@ const typeDefs = gql`
     name: String
     breed: String
     gender: String
-    owner: ID
     age: Int
+    username: String
     friends: [Dog]
     images: [Image]
   }
