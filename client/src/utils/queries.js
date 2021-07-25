@@ -15,7 +15,7 @@ export const GET_ME = gql`
   }
   `;
 
-  export const GET_DOGS = gql`
+  export const GET_MY_DOGS = gql`
 {
     me {
       _id
@@ -25,13 +25,48 @@ export const GET_ME = gql`
         breed
         gender
         age
-        friends {
-
-        }
-        images {
-            
-        }
+        friends
+        images
       }
     }
+  }
+  `;
+
+  export const GET_DOG = gql`
+  {
+    dogs {
+        _id
+        name
+        breed
+        gender
+        age
+        friends {
+            _id
+            name
+        }
+        friendCount
+        images{
+            _id
+            link
+            caption
+            commentCount
+        }
+    }
+  }
+  `;
+
+  export const GET_DOG_IMAGE = gql`
+  {
+    _id
+    link
+    caption
+    comments{
+        _id
+        commentText
+        createdAt
+        replies
+        repliesCount
+    }
+    createdAt
   }
   `;
