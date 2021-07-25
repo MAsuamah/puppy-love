@@ -73,7 +73,7 @@ const resolvers = {
 
       addDog: async(parent, args, context) => {
         if(context.user) {
-          const dog = new Dog({args});
+          const dog = await new Dog.create({...args});
           await User.findOneAndUpdate({_id: context.user._id}, { $push: { dogs: dog}}, {new: true});
           return dog;
         } throw new AuthenticationError('Not logged in');
@@ -106,25 +106,21 @@ const resolvers = {
           {new: true}
         )
         if (!updatedUser) {
-          throw new AuthenticactionError("Couldn't find this dog");
+          throw new AuthenticationError("Couldn't find this dog");
         }
         return updatedUser;
       },
       addImage: async(parent, { params, args }, context) => {
-        if(context.user) {
           const image = Image({args});
           await Dog.findOneAndUpdate({_id: params.dogId}, { $push: { images: image}},{new: true});
           // or
           // await Dog.findByIdAndUpdate(params.dogId, { $push: { images: image}},{new: true});
           return image;
-        } throw new AuthenticationError('Not logged in');
       },
       updateImageCaption: async(parent, {params, args}, context) => {
-        if(context.user) {
           return await Image.findOneAndUpdate(
             { _id: params.imageId}, args, { new: true }
           );
-        } throw new AuthenticationError('Not logged in');
       },
       // updateImageCaption: async(parent, {params, args}, context) => {
       //   const image = await Image.findOneAndUpdate(
