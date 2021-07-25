@@ -30,7 +30,7 @@ const AppNavbar = () => {
           <Navbar.Collapse id='navbar'>
             <Nav className='ms-auto'>
               {/* if user is logged in show saved books and logout */}
-             {/*  {Auth.loggedIn() ? ( */}
+               {Auth.loggedIn() ? ( 
                 <>
 
                 {/* MODAL SET FOR ADDING PETS STARTS*/}
@@ -57,9 +57,9 @@ const AppNavbar = () => {
                   <Nav.Link as={Link} to='/user-profile'>Your Profile</Nav.Link>
                   <Nav.Link onClick={Auth.logout}>Logout</Nav.Link>
                 </>
-              {/* ) : ( */}
+              ) : ( 
                 <Nav.Link onClick={() => setShowModal(true)}>Login/Sign Up</Nav.Link>
-             {/*  )} */}
+               )} 
             </Nav>
           </Navbar.Collapse>
         </Container>
