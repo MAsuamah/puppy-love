@@ -5,7 +5,7 @@ const typeDefs = gql`
   type Query {
     helloWorld: String
     me: User
-    user(username!:string):User
+    user(username:String):User
     dogs: [Dog]
     dog(name: String!): Dog
     images: [Image]
