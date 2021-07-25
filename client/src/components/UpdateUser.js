@@ -30,7 +30,7 @@ function UpdateUser() {
         <Modal.Body>
           <img style={updateImg} src={require(`../assets/images/josh-hild-tkn_izTEVGo-unsplash.jpg`).default} alt="dog owner holding their dog over there shoulder"></img>
           <Form>
-            <FloatingLabel controlId="floatingInput" label="Email address" className="mb-3">
+            <FloatingLabel controlId="floatingEmail" label="Email address" className="mb-3">
               <Form.Control type="email" placeholder="name@example.com" />
             </FloatingLabel>
 

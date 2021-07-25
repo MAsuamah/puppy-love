@@ -8,13 +8,24 @@ import Modal from 'react-bootstrap/Modal'
 import { FaPaw } from 'react-icons/fa';
 import SignUpForm from './SignupForm';
 import LoginForm from './LoginForm';
+import CreatePet from './CreatePet';
 import '../assets/styles/Navbar.css'
 
 import Auth from '../utils/auth';
 
 const AppNavbar = () => {
-  // set modal display state
+  // set modal display state for Login/SignUp
   const [showModal, setShowModal] = useState(false);
+  // set modal display state for Create Pet
+  const [showPetModal, setShowPetModal] = useState(false);
+
+{/* Styling for Create Pet Modal*/}
+  const createPetImg = {
+    width: '725px',
+    height: '300px',
+    marginBottom: '15px',
+    marginLeft: '25px'
+  }
 
   return (
     <>
@@ -29,12 +40,29 @@ const AppNavbar = () => {
               {/* if user is logged in show saved books and logout */}
              {/*  {Auth.loggedIn() ? ( */}
                 <>
-                  <Nav.Link as={Link} to='/'>
-                    Add a Pet
-                  </Nav.Link>
-                  <Nav.Link as={Link} to='/user-profile'>
-                    Your Profile
-                  </Nav.Link>
+
+                {/* MODAL SET FOR ADDING PETS STARTS*/}
+                  <Nav.Link onClick={() => setShowPetModal(true)}>Add a Pet</Nav.Link>
+
+                  <Modal
+                    size="lg"
+                    show={showPetModal}
+                    onHide={() => setShowPetModal(false)}
+                    aria-labelledby="example-modal-sizes-title-lg"
+                  >
+                    <Modal.Header closeButton>
+                      <Modal.Title id="example-modal-sizes-title-lg">
+                        Add a Pet
+                      </Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                    <img style={createPetImg} src={require(`../assets/images/t-r-photography-TzjMd7i5WQI-unsplash.jpg`).default} alt="puppy peeking over a bed"></img>
+                      <CreatePet />
+                    </Modal.Body>
+                  </Modal>
+                  {/* MODAL SET FOR ADDING PETS ENDS */}
+
+                  <Nav.Link as={Link} to='/user-profile'>Your Profile</Nav.Link>
                   <Nav.Link onClick={Auth.logout}>Logout</Nav.Link>
                 </>
               {/* ) : ( */}
