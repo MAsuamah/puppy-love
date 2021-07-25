@@ -24,14 +24,13 @@ function DeleteUser() {
           <Modal.Title>Modal title</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          I will not close if you click outside me. Don't even try to press
-          escape key.
+          Are you sure you would like to delete your account? This is a permanent action.
         </Modal.Body>
         <Modal.Footer>
           <Button variant="dark" onClick={handleClose}>
-            Close
+            Cancel
           </Button>
-          <Button variant="danger">Understood</Button>
+          <Button variant="danger">Delete</Button>
         </Modal.Footer>
       </Modal>
     </>
