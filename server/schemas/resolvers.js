@@ -94,20 +94,22 @@ const resolvers = {
       //   } throw new AuthenticationError('Not logged in');
       // },
       deleteDog: async(parent, {params, args}, context) => {
-        if(context.user) {
-          const dog = await Dog.findOneAndDelete(
-            { _id: params.dogId }, args, { new: true }
-          );
-          return dog;
-        } throw new AuthenticationError('Not logged in');
+        // if(context.user) {
+        //   const dog = await Dog.findOneAndDelete(
+        //     { _id: params.dogId }, args, { new: true }
+        //   );
+        //   return dog;
+        // } throw new AuthenticationError('Not logged in');
+        const updatedUser = await User.findOneAndUpdate(
+          {_id: context.user._id},
+          { $pull: {pets: params.petId}},
+          {new: true}
+        )
+        if (!updatedUser) {
+          throw new AuthenticactionError("Couldn't find this dog");
+        }
+        return updatedUser;
       },
-      // deleteDog: async(parent, {params, args}, context) => {
-      //   const dog = await Dog.findOneAndDelete(
-      //     { _id: params.dogId}, args, { new: true }
-      //   );
-      //   const token = signToken(dog);
-      //   return { dog, token };
-      // },
       addImage: async(parent, { params, args }, context) => {
         if(context.user) {
           const image = Image({args});
@@ -132,11 +134,20 @@ const resolvers = {
       //   return { image, token };
       // },
       deleteImage: async(parent, {params, args}, context) => {
-        if(context.user) {
-          return await Image.findOneAndDelete(
-            {_id: params.imageId}, args, { new: true }
-          );
-        } throw new AuthenticationError('Not logged in');
+        // if(context.user) {
+        //   return await Image.findOneAndDelete(
+        //     {_id: params.imageId}, args, { new: true }
+        //   );
+        // } throw new AuthenticationError('Not logged in');
+        const updatedDog = await Dog.findOneAndUpdate(
+          {_id: params.dogId},
+          { $pull: {images: params.imageId}},
+          {new: true}
+        )
+        if (!updatedDog) {
+          throw new AuthenticactionError("Couldn't find this dog");
+        }
+        return updatedDog;
       },
 
 
@@ -148,12 +159,15 @@ const resolvers = {
         } throw new AuthenticationError('Not logged in');
       },
       deleteComment: async(parent, {params, args}, context) => {
-        if(context.user) {
-          return await Comment.findOneAndDelete(
-            {_id: params.commentId}, args, { new: true }
-          );
-
-        } throw new AuthenticationError('Not logged in');
+        const updatedImage = await Image.findOneAndUpdate(
+          {_id: params.imageId},
+          { $pull: {comments: params.commentId}},
+          {new: true}
+        )
+        if (!updatedImage) {
+          throw new AuthenticactionError("Couldn't find this dog");
+        }
+        return updatedImage;
       },
 
       /* addReply: async(parent, args, context) => {
