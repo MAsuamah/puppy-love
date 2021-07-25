@@ -146,7 +146,7 @@ const resolvers = {
         } throw new AuthenticationError('Not logged in');
       },
 
-      addReply: async(parent, args, context) => {
+      /* addReply: async(parent, args, context) => {
         if(context.user) {
           const comment = Comment({args});
           await Comment.findByIdAndUpdate({_id: params._id}, { $push: { replies: comment}},{new: true});
@@ -158,7 +158,7 @@ const resolvers = {
             {_id: params._id}, args, { new: true }
           );
         } throw new AuthenticationError('Not logged in');
-      },
+      },*/ //replies are now comments and will be deleted by the comment id
     }
   };
   
