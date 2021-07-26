@@ -29,6 +29,8 @@ const typeDefs = gql`
     deleteImage(_id: ID, dogId: ID): Dog
     addComment(_id: ID, commentText: String!): Comment
     deleteComment(_id: ID, imageId: ID): Image 
+    addFriend(dog1: ID, dog2: ID): Dog
+    removeFriend(dog1: ID, dog2: ID): Dog
   }
   type Dog{
     _id: ID

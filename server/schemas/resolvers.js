@@ -216,6 +216,32 @@ const resolvers = {
         return updatedImage;
       } throw new AuthenticationError('Not logged in');
       },
+      addFriend: async(parent, {dog1, dog2}, context) => {
+        if(context.user) {
+          const updatedDog = await Dog.findOneAndUpdate(
+            {_id: dog1},
+            { $push: {friends: args.dog2}},
+            { new: true}
+          )
+          if (!updatedDog){
+            throw new AuthenticationError("Couldn't find this dog");
+          }
+          return updatedDog;
+        } throw new AuthenticationError('Not logged in');
+      },
+      removeFriend: async(parent, {dog1, dog2}, context) => {
+        if(context.user) {
+          const updatedDog = await Dog.findOneAndUpdate(
+            {_id: dog1},
+            { $pull: {friends: args.dog2}},
+            { new: true}
+          )
+          if (!updatedDog){
+            throw new AuthenticationError("Couldn't find this dog");
+          }
+          return updatedDog;
+        } throw new AuthenticationError('Not logged in');
+      },
       /* addReply: async(parent, args, context) => {
         if(context.user) {
           const comment = Comment({args});
