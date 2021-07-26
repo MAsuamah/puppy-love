@@ -1,9 +1,34 @@
+import { useQuery, useMutation } from '@apollo/client';
 import React, { useState, useEffect } from 'react';
 import { Container, Row, Image, Button} from 'react-bootstrap';
-
+import { QUERY_GET_DOG, ADD_FRIEND, REMOVE_FRIEND } from '../utils/mutations';
 import Auth from '../utils/auth';
 
 const DogProfile = () => {
+
+    const { data } = useQuery(QUERY_GET_DOG);
+    const [addFriend] = useMutation(ADD_FRIEND);
+    const removeFriend = useMutation(REMOVE_FRIEND);
+    const addFriendClick = async () => {
+        try {
+            addFriend({
+                variables: { id: user._id }
+            });
+        }
+        catch (e) {
+            console.error(e);
+        }
+    }
+    const removeFriendClick = async () => {
+        try {
+            removeFriend({
+                variables: { id: user._id }
+            });
+        }
+        catch (e) {
+            console.error(e);
+        }
+    }
 
     return (
         <>
