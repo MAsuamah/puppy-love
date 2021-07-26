@@ -41,7 +41,7 @@ const resolvers = {
       //searches by user id - for user dog list
       dogs: async(parent, args, context) => {
         if(context.user) {
-          return await Dog.find({username: context.user._id}).populate('images').populate('friends');
+          return await Dog.find({username: context.user.username}).populate('images').populate('friends');
         } throw new AuthenticationError('Not logged in');
       },
       //searches by image id - for comment page
@@ -104,16 +104,15 @@ const resolvers = {
         );
          } throw new AuthenticationError('Not logged in');
       },
-      // deleteUser: async(parent, args, context) => {
-      //   const user = await User.findOneAndDelete(
-      //     { _id:context.user.id}, args, { new: true }
-      //   );
-      //   return user;
-      // },
       addDog: async(parent, args, context) => {
-        console.log(context);
+
         if(context.user) {
-          const dog = await Dog.create({username: context.user.username,...args});
+          const dog = await Dog.create({username: context.user.username,
+            name: args.name,
+            breed: args.breed,
+            gender: args.gender,
+            age: args.age
+          });
           await User.findOneAndUpdate({_id: context.user._id}, { $push: { dogs: dog}}, {new: true});
           return dog;
         } throw new AuthenticationError('Not logged in');
@@ -133,13 +132,6 @@ const resolvers = {
           return dog;
         } throw new AuthenticationError('Not logged in');
       },
-      // updateDog: async(parent, {params, args}, context) => {
-      //   if(context.user) {
-      //     return await Dog.findOneAndUpdate(
-      //       { _id: params.dogId}, args, { new: true }
-      //     );
-      //   } throw new AuthenticationError('Not logged in');
-      // },
       deleteDog: async(parent, args, context) => {
         if(context.user) {
             const updatedUser = await User.findOneAndUpdate(
@@ -158,58 +150,71 @@ const resolvers = {
             return updatedUser;
         } throw new AuthenticationError('Not logged in');
       },
-      addImage: async(parent, { params, args }, context) => {
+      addImage: async(parent, args, context) => {
           if(context.user) {
-            const image = await image.create({...args});
-            await Dog.findOneAndUpdate({_id: params.dogId}, { $push: { images: image}}, {new: true});
+            const image = await Image.create({link: args.link, name: args.name, caption: args.caption});
+
+             await Dog.findOneAndUpdate({_id: args._id}, { $push: { images: image
+            }}, {new: true}); 
+
             return image;
+
           } throw new AuthenticationError('Not logged in');
       },
-      updateImageCaption: async(parent, {params, args}, context) => {
+      updateImageCaption: async(parent, args, context) => {
+        if(context.user){
           return await Image.findOneAndUpdate(
-            { _id: params.imageId}, args, { new: true }
+            { _id: args._id}, {caption: args.caption}, { new: true }
           );
+        } throw new AuthenticationError('Not logged in');
       },
-      // updateImageCaption: async(parent, {params, args}, context) => {
-      //   const image = await Image.findOneAndUpdate(
-      //     { _id: params.imageId}, args, { new: true }
-      //   );
-      //   const token = signToken(image);
-      //   return { image, token };
-      // },
-      deleteImage: async(parent, {params, args}, context) => {
-        // if(context.user) {
-        //   return await Image.findOneAndDelete(
-        //     {_id: params.imageId}, args, { new: true }
-        //   );
-        // } throw new AuthenticationError('Not logged in');
+      deleteImage: async(parent, args, context) => {
+        if(context.user) {
+
         const updatedDog = await Dog.findOneAndUpdate(
-          {_id: params.dogId},
-          { $pull: {images: params.imageId}},
+          {_id: args.dogId},
+          { $pull: {images: args._id}},
           {new: true}
         )
         if (!updatedDog) {
           throw new AuthenticactionError("Couldn't find this dog");
         }
+
+        await Image.findOneAndDelete(
+          {_id: args._id}
+        ); 
+        
         return updatedDog;
-      },
-      addComment: async(parent, { params, args }, context) => {
-        if(context.user) {
-          const comment = Comment({args});
-          await Image.findByIdAndUpdate({_id: params.imageId}, { $push: { comments: comment}},{new: true});
-          return comment;
+
         } throw new AuthenticationError('Not logged in');
       },
-      deleteComment: async(parent, {params, args}, context) => {
+      addComment: async(parent, args, context) => {
+        
+        if(context.user) {
+          const commented = await Comment.create({username: context.user.username,
+          commentText: args.commentText});
+
+          await Image.findByIdAndUpdate({_id: args._id}, { $push: { comments: commented}},{new: true});
+
+          return commented;
+        } throw new AuthenticationError('Not logged in');
+      },
+      deleteComment: async(parent, args, context) => {
+        if(context.user) {
+
         const updatedImage = await Image.findOneAndUpdate(
-          {_id: params.imageId},
-          { $pull: {comments: params.commentId}},
+          {_id: args.imageId},
+          { $pull: {comments: args._id}},
           {new: true}
         )
+
         if (!updatedImage) {
           throw new AuthenticactionError("Couldn't find this dog");
         }
+        await Comment.findByIdAndDelete({_id: args._id});
+
         return updatedImage;
+      } throw new AuthenticationError('Not logged in');
       },
       /* addReply: async(parent, args, context) => {
         if(context.user) {
