@@ -26,7 +26,6 @@ const typeDefs = gql`
     addImage( _id: ID, name: String!, link: String!, caption: String): Image
     updateImageCaption(_id: ID, caption: String!): Image
     deleteImage(_id: ID, dogId: ID): Dog
-
     addComment(_id: ID, commentText: String!): Comment
     deleteComment(_id: ID, imageId: ID): Image 
   }

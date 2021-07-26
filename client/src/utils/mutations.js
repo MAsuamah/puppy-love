@@ -128,8 +128,8 @@ mutation addComment($id: ID, $commentText: String!) {
 `;
 
 export const DELETE_COMMENT = gql`
-  mutation deleteComment($id: ID) {
-    deleteComment(_id: $id) {
+  mutation deleteComment($id: ID, $imageId: ID) {
+    deleteComment(_id: $id, imageId: $imageId) {
       comment {
         _id
         commentText
