@@ -14,6 +14,7 @@ const typeDefs = gql`
     image(_id: ID): Image
     images: [Image]
     allImages: [Image]
+    comments: [Comment]
   }
   type Mutation {
     login(email: String!, password: String!): Auth
