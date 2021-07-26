@@ -1,5 +1,5 @@
 import React from 'react';
-import NavBar from './components/NavBar';
+import AppNavbar from './components/NavBar';
 import Home from './pages/Home';
 import UserProfile from './pages/UserProfile';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
@@ -9,7 +9,7 @@ function App() {
 	return (
 		<Router>
 
-					<NavBar />
+					<AppNavbar />
 					<Switch>
 						<Route exact path='/' component={Home} />
 						<Route exact path='/user-profile' component={UserProfile} />
