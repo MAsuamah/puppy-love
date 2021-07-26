@@ -9,7 +9,7 @@ const typeDefs = gql`
     user(username:String): User
     allUsers:[User]
     dog(_id: ID): Dog
-    dogs(_id: ID):[Dog]
+    dogs:[Dog]
     allDogs:[Dog]
     image(_id: ID): Image
     images: [Image]
@@ -29,6 +29,8 @@ const typeDefs = gql`
     deleteImage(_id: ID, dogId: ID): Dog
     addComment(_id: ID, commentText: String!): Comment
     deleteComment(_id: ID, imageId: ID): Image 
+    addFriend(dog1: ID, dog2: ID): Dog
+    removeFriend(dog1: ID, dog2: ID): Dog
   }
   type Dog{
     _id: ID
