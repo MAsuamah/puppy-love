@@ -1,9 +1,10 @@
 import React from 'react';
-import Navbar from './components/Navbar';
+import NavBar from './components/NavBar';
 import Home from './pages/Home';
 import UserProfile from './pages/UserProfile';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { ApolloProvider, ApolloClient } from '@apollo/client';
+
 function App() {
 	return (
 		<Router>

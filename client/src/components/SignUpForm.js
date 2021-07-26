@@ -4,7 +4,7 @@ import Auth from '../utils/auth';
 /* import { useMutation } from '@apollo/client';
 import { ADD_USER } from '../utils/mutations'; */
 
-const SignupForm = () => {
+const SignUpForm = () => {
   //Styling for Submit Button
   const submit = {
     marginTop: '10px'
@@ -115,4 +115,4 @@ const SignupForm = () => {
   );
 };
 
-export default SignupForm;
+export default SignUpForm;
