@@ -1,10 +1,10 @@
 const faker = require('faker');
 const db = require('../config/connection');
-const { Thought, User } = require('../models');
+const { Dog, User, } = require('../models');
 
-/*
+
 db.once('open', async () => {
-  await Thought.deleteMany({});
+  await Dog.deleteMany({});
   await User.deleteMany({});
   // create user data
   const userData = [];
@@ -18,27 +18,29 @@ db.once('open', async () => {
   // create friends
   for (let i = 0; i < 100; i += 1) {
     const randomUserIndex = Math.floor(Math.random() * createdUsers.ops.length);
-    const { _id: userId } = createdUsers.ops[randomUserIndex];
-    let friendId = userId;
-    while (friendId === userId) {
+    const { _id: dogId } = createdUsers.ops[randomUserIndex];
+    let friendId = dogId;
+    while (friendId === dogId) {
       const randomUserIndex = Math.floor(Math.random() * createdUsers.ops.length);
       friendId = createdUsers.ops[randomUserIndex];
     }
-    await User.updateOne({ _id: userId }, { $addToSet: { friends: friendId } });
+    await Dog.updateOne({ _id: dogId }, { $addToSet: { friends: friendId } });
   }
-  // create thoughts
-  let createdThoughts = [];
+  // create dogs
+  let createdDogs = [];
   for (let i = 0; i < 100; i += 1) {
-    const thoughtText = faker.lorem.words(Math.round(Math.random() * 20) + 1);
+    const dog = faker.lorem.words(Math.round(Math.random() * 20) + 1);
     const randomUserIndex = Math.floor(Math.random() * createdUsers.ops.length);
     const { username, _id: userId } = createdUsers.ops[randomUserIndex];
-    const createdThought = await Thought.create({ thoughtText, username });
+    const createdDog = await Dog.create({ name, breed, gender, age });
     const updatedUser = await User.updateOne(
       { _id: userId },
-      { $push: { thoughts: createdThought._id } }
+      { $push: { dogss: createdDog._id } }
     );
-    createdThoughts.push(createdThought);
+    createdDogs.push(createdDog);
   }
+
+  /*
   // create reactions
   for (let i = 0; i < 100; i += 1) {
     const reactionBody = faker.lorem.words(Math.round(Math.random() * 20) + 1);
