@@ -65,7 +65,6 @@ export const GET_ME = gql`
 
   export const GET_DOG = gql`
   {
-    dogs {
         _id
         name
         breed
@@ -82,7 +81,6 @@ export const GET_ME = gql`
             caption
             commentCount
         }
-    }
   }
   `;
 
