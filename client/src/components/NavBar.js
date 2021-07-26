@@ -1,19 +1,19 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Container from 'react-bootstrap/Container'
-import Navbar from 'react-bootstrap/Navbar'
+import Navbar from 'react-bootstrap/NavBar'
 import Nav from 'react-bootstrap/Nav'
 import Tab from 'react-bootstrap/Tab'
 import Modal from 'react-bootstrap/Modal'
 import { FaPaw } from 'react-icons/fa';
-import SignUpForm from './SignupForm';
+import SignUpForm from './SignUpForm';
 import LoginForm from './LoginForm';
 import CreatePet from './CreatePet';
 import '../assets/styles/Navbar.css'
 
 import Auth from '../utils/auth';
 
-const AppNavbar = () => {
+const NavBar = () => {
   // set modal display state for Login/SignUp
   const [showModal, setShowModal] = useState(false);
   // set modal display state for Create Pet
@@ -21,13 +21,13 @@ const AppNavbar = () => {
 
   return (
     <>
-      <Navbar bg='dark' variant='dark' expand='lg'>
+      <NavBar bg='dark' variant='dark' expand='lg'>
         <Container fluid>
-          <Navbar.Brand as={Link} to='/'>
+          <NavBar.Brand as={Link} to='/'>
             Puppy Love <FaPaw />
-          </Navbar.Brand>
-          <Navbar.Toggle aria-controls='navbar' />
-          <Navbar.Collapse id='navbar'>
+          </NavBar.Brand>
+          <NavBar.Toggle aria-controls='NavBar' />
+          <NavBar.Collapse id='NavBar'>
             <Nav className='ms-auto'>
               {/* if user is logged in show saved books and logout */}
                {Auth.loggedIn() ? ( 
@@ -61,9 +61,9 @@ const AppNavbar = () => {
                 <Nav.Link onClick={() => setShowModal(true)}>Login/Sign Up</Nav.Link>
                )} 
             </Nav>
-          </Navbar.Collapse>
+          </NavBar.Collapse>
         </Container>
-      </Navbar>
+      </NavBar>
       {/* set modal data up */}
       <Modal
         size='lg'
@@ -100,4 +100,4 @@ const AppNavbar = () => {
   );
 };
 
-export default AppNavbar;
+export default NavBar;
