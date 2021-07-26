@@ -167,7 +167,9 @@ const resolvers = {
       },
       updateImageCaption: async(parent, {params, args}, context) => {
           return await Image.findOneAndUpdate(
-            { _id: params.imageId}, args, { new: true }
+            { _id: params.imageId}, 
+            {caption: args.caption}, 
+            { new: true }
           );
       },
       // updateImageCaption: async(parent, {params, args}, context) => {
