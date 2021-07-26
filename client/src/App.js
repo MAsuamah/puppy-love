@@ -1,8 +1,21 @@
 import React from 'react';
+import Navbar from './components/Navbar';
+import Home from './pages/Home';
+import UserProfile from './pages/UserProfile';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { ApolloProvider, ApolloClient } from '@apollo/client';
 function App() {
-return (
-    <h1>hello</h1>
-)
+	return (
+		<Router>
+				<>
+					<Navbar />
+					<Switch>
+						<Route exact path='/' component={Home} />
+						<Route exact path='/user-profile' component={UserProfile} />
+            <Route render={() => <h1 className='display-2'>Wrong page!</h1>} />
+					</Switch>
+				</>
+		</Router>
+	)
 }
 export default App;
