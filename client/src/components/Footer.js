@@ -7,8 +7,8 @@ import '../assets/styles/Footer.css'
 function AppFooter () {
     return (
         <>
-        <Container id = 'footer'>
-            <p>Puppy-Love is created by: </p>
+        <Container className= 'footer'>
+            <p id='footer-p'>Puppy-Love is created by: </p>
             <Nav.Link as={Link} to ='https://andre-moseley-full-stack-dev.herokuapp.com/'>Andre Moseley</Nav.Link>
             <Nav.Link as={Link} to ='https://liaof.github.io/portfolio/'>Fanxi Liao</Nav.Link>
             <Nav.Link as={Link} to ='https://github.com/liaof'>Marilyn Papadopoulos</Nav.Link>
