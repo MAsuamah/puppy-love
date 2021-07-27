@@ -1,19 +1,25 @@
 import React, { useState, useEffect } from 'react';
-import { Jumbotron, Container, Row, Image, Form, Button} from 'react-bootstrap';
+import Image from 'react-bootstrap/Image';
+import Container from 'react-bootstrap/Container'
+import Row from 'react-bootstrap/Row'
+import Form from 'react-bootstrap/Form'
+import Button from 'react-bootstrap/Button'
+//import Jumbotron from 'react-bootstrap/Jumbotron'
 import useParams from 'react-router-dom';
 import { useQuery, useMutation } from '@apollo/client';
 import Auth from '../utils/auth';
-import { GET_DOG_IMAGE } from '..utils/queries';
-import { ADD_IMAGE } from '..utils/mutations'
+import { GET_DOG_IMAGES } from '../utils/queries';
+
 
 
 const DogImage = () => {
 
-    const { data } = useQuery(GET_DOG_IMAGE);
-    const dogImage = data?.image || {};
-    console.log("user data image", userData)
-    const [ addImage, { error }] = useMutation(ADD_IMAGE);
-    
+    const { data } = useQuery(GET_DOG_IMAGES);
+    const dogImages = data?.images || [];
+    //console.log("user data image", userData)
+ 
+    console.log(dogImages);
+    const dog = {name: 'Pepper'}
      const handleRemoveImage = async (dogId) => {
          const token = Auth.loggedIn() ? Auth.getToken() : null;
          if (!token) {
@@ -29,22 +35,25 @@ const DogImage = () => {
 
     return (
         <>
-    
-            <Jumbotron fluid className='text-light bg-dark'>
+{/*     
+            <Jumbotron fluid className='text-light bg-dark'> */}
                 <Container>
                     {/* insert dog's name from data below */}
-                    <h1> ${dog.name} Profile! </h1>
+                    {/* <h1> {dog.name} Profile! </h1> */}
                 </Container>
-            </Jumbotron>
+            {/* </Jumbotron> */}
 
             <Container>
                 <Row>
-                    <Image src={dog.image} alt={`Profile Image for ${dog.name}`} fluid/>
+                    {dogImages?.map(dog => (
+                         <Image src={dog.image} alt={`Profile Image for ${dog.name}`} fluid/>
+                    ))}
+                   
                 </Row>
             </Container>
 
             <Form>
-                <h1>${dog.name}</h1>
+                <h1>{dog.name}</h1>
                 
                 <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
                     <Form.Label>Comment</Form.Label>
