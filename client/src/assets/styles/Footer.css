@@ -1,0 +1,25 @@
+
+#portfolioLink {
+    text-decoration: none;
+}
+
+.container {
+    background-color: #212529;
+    max-width: 100% !important;
+    margin: 0px !important;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    padding: 3px 0px;
+    align-items: center;
+}
+
+a.nav-link {
+    color: rgb(196, 196, 196);
+}
+
+p{
+    color: #fff;
+    margin-bottom: 0px !important;
+}
+
