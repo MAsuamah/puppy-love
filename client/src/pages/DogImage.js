@@ -20,13 +20,15 @@ const DogImage = () => {
  
     console.log(dogImages);
     const dog = {name: 'Pepper'}
-     const handleRemoveImage = async (dogId) => {
+    const handleClick = async event => {
+         event.preventDefault()
+
          const token = Auth.loggedIn() ? Auth.getToken() : null;
          if (!token) {
              return false;
          }
         try {
-              const { data } = await addImage ({ variables: (dogID) })
+              const { data } = await addComment ({ variables: (commentText) })
           }
           catch (e) {
             console.error(e);
@@ -35,11 +37,11 @@ const DogImage = () => {
 
     return (
         <>
-{/*     
-            <Jumbotron fluid className='text-light bg-dark'> */}
+    
+            {/* <Jumbotron fluid className='text-light bg-dark'> */}
                 <Container>
-                    {/* insert dog's name from data below */}
-                    {/* <h1> {dog.name} Profile! </h1> */}
+                    insert dog's name from data below
+                    <h1> {dog.name} Profile! </h1>
                 </Container>
             {/* </Jumbotron> */}
 
@@ -60,7 +62,7 @@ const DogImage = () => {
                     <Form.Control as="textarea" placeholder="Tell others how much you like their dog!" rows={3} />
                 </Form.Group>
 
-                <Button as="input" type="submit" value="Post"/>
+                <Button as="input" type="submit" value="Post" onClick={handleClick}/>
 
             </Form>     
 
