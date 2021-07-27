@@ -6,6 +6,8 @@ import Auth from '../utils/auth';
 import { GET_DOG_IMAGE } from '..utils/queries';
 import { ADD_IMAGE } from '..utils/mutations'
 import '../assets/styles/DogPages.css'
+import { FaDog } from "react-icons/fa";
+
 
 
 
@@ -35,7 +37,7 @@ const DogImage = () => {
             <Jumbotron fluid className='text-light bg-dark' class="user-icons">
                 <Container>
                     {/* insert dog's name from data below */}
-                    <h1> ${dog.name} Profile! </h1>
+                    <h1><FaDog/> ${dog.name}</h1>
                 </Container>
             </Jumbotron>
 
