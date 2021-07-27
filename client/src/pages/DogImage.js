@@ -8,8 +8,8 @@ import Button from 'react-bootstrap/Button'
 import useParams from 'react-router-dom';
 import { useQuery, useMutation } from '@apollo/client';
 import Auth from '../utils/auth';
-import { GET_DOG_IMAGE } from '..utils/queries';
-import { ADD_IMAGE } from '..utils/mutations'
+import { GET_DOG_IMAGE } from '../utils/queries';
+import { ADD_IMAGE } from '../utils/mutations'
 import '../assets/styles/DogPages.css'
 import { FaDog } from "react-icons/fa";
 

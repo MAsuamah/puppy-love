@@ -12,12 +12,13 @@
 #user-info {
   display: flex;
   position: relative;
-  left: 35%;
+  left: 25%;
 }
 
 .user-icons {
   padding: 20px;
   font-size: 25px;
+  margin-top: 35px;
 }
 
 .update-user {
