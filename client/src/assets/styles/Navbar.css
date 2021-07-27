@@ -17,3 +17,10 @@ a.navbar-brand {
   margin-bottom: 15px;
   margin-left: 25px;
 }
+
+#navbar {
+  position: fixed;     
+  top: 0; 
+  left: 0;      
+  width: 100%; 
+}
