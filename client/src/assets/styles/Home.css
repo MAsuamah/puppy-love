@@ -1,0 +1,27 @@
+.hero-image {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../images/mia-anderson-2k6v10Y2dIg-unsplash.jpg);
+  background-size:cover;
+  height: 93vh;
+}
+
+#hero-tagline {
+  color: white;
+  font-weight: 600;
+  font-size: 70px;
+  text-transform: uppercase;
+  text-align: center;
+  position: relative;
+  top: 30%;
+}
+
+#meet-pups {
+  color: white;
+  text-align: center;
+  position: relative;
+  top: 50%;
+  font-size: 30px;
+}
+
+#pup-arrow {
+  margin-right: 10px;
+}
