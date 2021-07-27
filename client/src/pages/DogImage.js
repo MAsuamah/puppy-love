@@ -8,8 +8,10 @@ import Button from 'react-bootstrap/Button'
 import useParams from 'react-router-dom';
 import { useQuery, useMutation } from '@apollo/client';
 import Auth from '../utils/auth';
-import { GET_DOG_IMAGES } from '../utils/queries';
-
+import { GET_DOG_IMAGE } from '..utils/queries';
+import { ADD_IMAGE } from '..utils/mutations'
+import '../assets/styles/DogPages.css'
+import { FaDog } from "react-icons/fa";
 
 
 const DogImage = () => {
@@ -37,15 +39,12 @@ const DogImage = () => {
 
     return (
         <>
-    
-            {/* <Jumbotron fluid className='text-light bg-dark'> */}
-                <Container>
-                    insert dog's name from data below
-                    <h1> {dog.name} Profile! </h1>
-                </Container>
-            {/* </Jumbotron> */}
+            <Container class="user-icons">
+                insert dog's name from data below
+                <h1><FaDog/> {dog.name} Profile! </h1>
+            </Container>
 
-            <Container>
+            <Container fluid class="image-container">
                 <Row>
                     {dogImages?.map(dog => (
                          <Image src={dog.image} alt={`Profile Image for ${dog.name}`} fluid/>
@@ -54,7 +53,7 @@ const DogImage = () => {
                 </Row>
             </Container>
 
-            <Form>
+            <Form fluid class="form-background">
                 <h1>{dog.name}</h1>
                 
                 <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">

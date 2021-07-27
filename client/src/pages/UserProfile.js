@@ -8,7 +8,7 @@ import DeleteUser from '../components/DeleteUser';
 import { useQuery } from '@apollo/client';
 import {GET_ME} from '../utils/queries';
 import Auth from '../utils/auth';
-
+ 
 const UserProfile = () => {
 
       // set state for alert

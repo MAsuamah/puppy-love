@@ -2,6 +2,10 @@ import { useQuery, useMutation } from '@apollo/client';
 import React, { useState, useEffect } from 'react';
 import { Container, Row, Image, Button} from 'react-bootstrap';
 import { QUERY_GET_DOG, ADD_FRIEND, REMOVE_FRIEND } from '../utils/mutations';
+import '../assets/styles/DogPages.css'
+import { FaDog } from "react-icons/fa";
+
+
 import Auth from '../utils/auth';
 
 const DogProfile = () => {
@@ -35,52 +39,77 @@ const DogProfile = () => {
         <>
             <Row>
 
-                <Container>
+                <Col>
 
-                    <Container>
+                    <Container fluid class="user-icons" class="profile-container">
                         {/* insert dog's name from data below */}
-                        <h1> ${dog.name}</h1>
+                        <h1><FaDog/> ${dog.name}</h1>
                         <Button as="input" type="button" value="Add Friend"/>
                     </Container>
 
-                    <Container>
+                    <Container fluid class="profile-container">
                         <h2>Gender: ${dog.gender}</h2>
                         <h2>Age: ${dog.age}</h2>
                         <h2>Breed: ${dog.breed}</h2>
-                        <h2>City: ${dog.location}</h2>
+                        <h2>City: ${user.location}</h2>
                     </Container>
 
-                </Container>
+                </Col>
 
-                <Container>
+                <Col fluid>
 
-                    <Container>
+                    <Container fluid class="profile-container">
                         <h1>Friend List</h1>
                         <Button as="input" type="button" value="Delete Friend"/>
                     </Container>
 
-                    <Container>
-                        <h2>${dog.friend}</h2>
+                    <Container fluid>
+                        <h2>${dog.friends}</h2>
                     </Container>
 
-                </Container>
+                </Col>
 
             </Row>
 
-            <Container>
+            <Container fluid class="image-container">
 
-                <Row>
-                    <Image src={dog.image} alt={`Images of ${dog.name}`} thumbnail/>
-                    <Image src={dog.image} alt={`Images of ${dog.name}`} thumbnail/>
-                    <Image src={dog.image} alt={`Images of ${dog.name}`} thumbnail/>
-                    <Image src={dog.image} alt={`Images of ${dog.name}`} thumbnail/>
+                <Row class="row-images" id="top-row-images">
+
+                    <Col>
+                        <Image class="dog-images" src={dog.images} alt={`Images of ${dog.name}`} thumbnail/>
+                    </Col>
+
+                    <Col>
+                        <Image class="dog-images" src={dog.images} alt={`Images of ${dog.name}`} thumbnail/>
+                    </Col>
+
+                    <Col>
+                        <Image class="dog-images" src={dog.images} alt={`Images of ${dog.name}`} thumbnail/>
+                    </Col>
+
+                    <Col>
+                        <Image class="dog-images" src={dog.images} alt={`Images of ${dog.name}`} thumbnail/>
+                    </Col>
+
                 </Row>
 
-                <Row>
-                    <Image src={dog.image} alt={`Images of ${dog.name}`} thumbnail/>
-                    <Image src={dog.image} alt={`Images of ${dog.name}`} thumbnail/>
-                    <Image src={dog.image} alt={`Images of ${dog.name}`} thumbnail/>
-                    <Image src={dog.image} alt={`Images of ${dog.name}`} thumbnail/>
+                <Row class="row-images">
+                    <Col>
+                        <Image class="dog-images" src={dog.images} alt={`Images of ${dog.name}`} thumbnail/>
+                    </Col>
+
+                    <Col>
+                        <Image class="dog-images" src={dog.images} alt={`Images of ${dog.name}`} thumbnail/>
+                    </Col>
+
+                    <Col>
+                        <Image class="dog-images" src={dog.images} alt={`Images of ${dog.name}`} thumbnail/>
+                    </Col>
+
+                    <Col>
+                        <Image class="dog-images" src={dog.images} alt={`Images of ${dog.name}`} thumbnail/>
+                    </Col>
+
                 </Row>
 
             </Container>  

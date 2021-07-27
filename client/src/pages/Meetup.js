@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Jumbotron, Container, Row, Image, Form, Button} from 'react-bootstrap';
+import { FaLocationArrow } from "react-icons/fa";
 
 import Auth from '../utils/auth';
 
@@ -11,11 +12,11 @@ const Meetup = () => {
             <Jumbotron fluid className='text-light bg-dark'>
                 <Container>
                     {/* insert dog's name from data below */}
-                    <h1> Meetup Organizer</h1>
+                    <h1><FaLocationArrow/> Meetup Organizer</h1>
                 </Container>
             </Jumbotron>
 
-            <Form>
+            <Form fluid id="form-background">
                 <h1>${dog.name}</h1>
 
                 <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
