@@ -105,7 +105,6 @@ const resolvers = {
          } throw new AuthenticationError('Not logged in');
       },
       addDog: async(parent, args, context) => {
-
         if(context.user) {
           const dog = await Dog.create({username: context.user.username,
             name: args.name,

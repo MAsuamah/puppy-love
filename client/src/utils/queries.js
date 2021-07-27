@@ -8,8 +8,11 @@ export const GET_ME = gql`
     email
     city
     dogs {
-      _id
-      name
+        _id
+        name
+        breed
+        gender
+        age
     }
     }
   }
