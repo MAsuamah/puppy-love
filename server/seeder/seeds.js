@@ -29,13 +29,22 @@ db.once('open', async () => {
   // create dogs
   let createdDogs = [];
   for (let i = 0; i < 100; i += 1) {
-    const dog = faker.lorem.words(Math.round(Math.random() * 20) + 1);
+    const name = faker.name.firstName;
+    const breed = faker.animal.dog();
+    const gender = faker.randon.boolean();
+    if( gender === true) {
+      gender = 'female'
+    } else {
+      gender = 'male'
+    }
+    const age = faker.random.number;
+    const images = faker.image.cats();
     const randomUserIndex = Math.floor(Math.random() * createdUsers.ops.length);
     const { username, _id: userId } = createdUsers.ops[randomUserIndex];
-    const createdDog = await Dog.create({ name, breed, gender, age });
+    const createdDog = await Dog.create({ name, breed, gender, age, images });
     const updatedUser = await User.updateOne(
       { _id: userId },
-      { $push: { dogss: createdDog._id } }
+      { $push: { dogs: createdDog._id } }
     );
     createdDogs.push(createdDog);
   }
@@ -54,7 +63,7 @@ db.once('open', async () => {
       { runValidators: true }
     );
   }
+  */
   console.log('all done!');
   process.exit(0);
 });
-*/

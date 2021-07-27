@@ -21,7 +21,7 @@ const AppNavbar = () => {
 
   return (
     <>
-      <Navbar id="navbar" bg='dark' variant='dark' expand='lg'>
+      <Navbar id='navbar' bg='dark' variant='dark' expand='lg'>
         <Container fluid>
           <Navbar.Brand as={Link} to='/'>
             Puppy Love <FaPaw />
