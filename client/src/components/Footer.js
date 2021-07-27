@@ -8,7 +8,6 @@ function AppFooter () {
     return (
         <>
         <Container id = 'footer'>
-            Created By
             <p>Puppy-Love is created by: </p>
             <Nav.Link as={Link} to ='https://andre-moseley-full-stack-dev.herokuapp.com/'>Andre Moseley</Nav.Link>
             <Nav.Link as={Link} to ='https://liaof.github.io/portfolio/'>Fanxi Liao</Nav.Link>
