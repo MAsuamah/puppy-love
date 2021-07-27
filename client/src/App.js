@@ -1,5 +1,6 @@
 import React from 'react';
 import AppNavbar from './components/NavBar';
+import AppFooter from './components/Footer';
 import Home from './pages/Home';
 import DogImage from './pages/DogImage'
 import UserProfile from './pages/UserProfile';
@@ -32,6 +33,7 @@ function App() {
 					<Route exact path='/dogs' component={DogImage} />
 					<Route render={() => <h1 className='display-2'>Wrong page!</h1>} />
 				</Switch>
+				<AppFooter/>
 
 			</Router>
 		</ApolloProvider>
