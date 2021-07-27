@@ -5,6 +5,8 @@ import { useQuery, useMutation } from '@apollo/client';
 import Auth from '../utils/auth';
 import { GET_DOG_IMAGE } from '..utils/queries';
 import { ADD_IMAGE } from '..utils/mutations'
+import '../assets/styles/DogPages.css'
+
 
 
 const DogImage = () => {
@@ -13,7 +15,7 @@ const DogImage = () => {
     const dogImage = data?.image || {};
     console.log("user data image", userData)
     const [ addImage, { error }] = useMutation(ADD_IMAGE);
-    
+
      const handleRemoveImage = async (dogId) => {
          const token = Auth.loggedIn() ? Auth.getToken() : null;
          if (!token) {
@@ -30,20 +32,20 @@ const DogImage = () => {
     return (
         <>
     
-            <Jumbotron fluid className='text-light bg-dark'>
+            <Jumbotron fluid className='text-light bg-dark' class="user-icons">
                 <Container>
                     {/* insert dog's name from data below */}
                     <h1> ${dog.name} Profile! </h1>
                 </Container>
             </Jumbotron>
 
-            <Container>
+            <Container fluid class="image-container">
                 <Row>
-                    <Image src={dog.image} alt={`Profile Image for ${dog.name}`} fluid/>
+                    <Image src={dog.images} alt={`Profile Image for ${dog.name}`} fluid/>
                 </Row>
             </Container>
 
-            <Form>
+            <Form fluid class="form-background">
                 <h1>${dog.name}</h1>
                 
                 <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">

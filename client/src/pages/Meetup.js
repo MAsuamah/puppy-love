@@ -15,7 +15,7 @@ const Meetup = () => {
                 </Container>
             </Jumbotron>
 
-            <Form>
+            <Form fluid id="form-background">
                 <h1>${dog.name}</h1>
 
                 <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
