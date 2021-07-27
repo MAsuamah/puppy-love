@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
 import '../assets/styles/UserProfile.css'
 import {FaRegUserCircle} from 'react-icons/fa';
 import {FiMail} from 'react-icons/fi';
@@ -26,12 +25,11 @@ const UserProfile = () => {
         return <h2>LOADING...</h2>;
       }
 
-       if (!data) {
+       if (!data.me) {
          throw new Error('You need to be logged in to view this page.');
        }
 
        const userData = data.me;
-       
 
   return (
     <div className="user-profile">
@@ -47,8 +45,8 @@ const UserProfile = () => {
         </div>
       </div>
       <section className="dog-list"> 
-        {userData.dogs.map((dog) => {
-          return <div dogId={dog._id}>{dog.name}</div>
+         {userData.dogs.map((dog) => {
+          return (<li key={dog._id}>{dog.name}</li>)
         })}
       </section>
       <div className='update-user'>

@@ -13,8 +13,6 @@ export const GET_ME = gql`
         breed
         gender
         age
-        friends
-        images
     }
     }
   }
