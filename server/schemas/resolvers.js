@@ -219,7 +219,7 @@ const resolvers = {
         if(context.user) {
           const updatedDog = await Dog.findOneAndUpdate(
             {_id: dog1},
-            { $push: {friends: args.dog2}},
+            { $push: {friends: dog2}},
             { new: true}
           )
           if (!updatedDog){
@@ -232,7 +232,7 @@ const resolvers = {
         if(context.user) {
           const updatedDog = await Dog.findOneAndUpdate(
             {_id: dog1},
-            { $pull: {friends: args.dog2}},
+            { $pull: {friends: dog2}},
             { new: true}
           )
           if (!updatedDog){

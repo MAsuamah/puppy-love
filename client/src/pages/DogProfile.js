@@ -6,8 +6,6 @@ import '../assets/styles/DogPages.css'
 import { FaDog } from "react-icons/fa";
 
 
-
-
 import Auth from '../utils/auth';
 
 const DogProfile = () => {
@@ -15,6 +13,7 @@ const DogProfile = () => {
     const { data } = useQuery(QUERY_GET_DOG);
     const [addFriend] = useMutation(ADD_FRIEND);
     const removeFriend = useMutation(REMOVE_FRIEND);
+    
     const addFriendClick = async () => {
         try {
             addFriend({
