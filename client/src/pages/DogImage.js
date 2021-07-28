@@ -1,26 +1,40 @@
 import React, { useState, useEffect } from 'react';
-import { Jumbotron, Container, Row, Image, Form, Button} from 'react-bootstrap';
-import useParams from 'react-router-dom';
+import Image from 'react-bootstrap/Image';
+import Container from 'react-bootstrap/Container'
+import Row from 'react-bootstrap/Row'
+import Form from 'react-bootstrap/Form'
+import Button from 'react-bootstrap/Button'
+//import Jumbotron from 'react-bootstrap/Jumbotron'
+import {useParams} from 'react-router-dom';
 import { useQuery, useMutation } from '@apollo/client';
 import Auth from '../utils/auth';
-import { GET_DOG_IMAGE } from '..utils/queries';
-import { ADD_IMAGE } from '..utils/mutations'
+import { GET_DOG_IMAGE } from '../utils/queries';
+import '../assets/styles/DogPages.css'
 
 
 const DogImage = () => {
 
-    const { data } = useQuery(GET_DOG_IMAGE);
-    const dogImage = data?.image || {};
-    console.log("user data image", userData)
-    const [ addImage, { error }] = useMutation(ADD_IMAGE);
-    
-     const handleRemoveImage = async (dogId) => {
+    const [commentFormData, setCommentFormData] = useState({ commentText });
+    const [getDog] = useQuery(GET_DOG_IMAGE);
+    const [addComment] = useMutation(ADD_COMMENT);
+    const {imageId} = useParams();
+    const {loading, error, data} = getDog({variables: imageId});
+    const dogImage = data;
+
+    const handleDogInputChange = (event) => {
+        const { name, value } = event.target;
+        setCommentFormData({ commentText, [name]: value });
+        };
+
+    const handleClick = async event => {
+         event.preventDefault()
+
          const token = Auth.loggedIn() ? Auth.getToken() : null;
          if (!token) {
              return false;
          }
         try {
-              const { data } = await addImage ({ variables: (dogID) })
+              const { comment } = await addComment ({ variables: {id: imageId, commentFormData} });
           }
           catch (e) {
             console.error(e);
@@ -29,29 +43,23 @@ const DogImage = () => {
 
     return (
         <>
-    
-            <Jumbotron fluid className='text-light bg-dark'>
-                <Container>
-                    {/* insert dog's name from data below */}
-                    <h1> ${dog.name} Profile! </h1>
-                </Container>
-            </Jumbotron>
+            <Container fluid class="image-container">
+                <Image src={dogImage.link}  alt={`Profile Image for dog`} fluid/>
 
-            <Container>
-                <Row>
-                    <Image src={dog.image} alt={`Profile Image for ${dog.name}`} fluid/>
-                </Row>
+                <div>{comment.map((comment) => {
+                return <div>{comment.username} + {comment.commentText} + {comment.createdAt} +</div>})}</div>
             </Container>
 
-            <Form>
-                <h1>${dog.name}</h1>
+            <Form fluid class="form-background">
+                <h1>{dog.name}</h1>
                 
                 <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
                     <Form.Label>Comment</Form.Label>
-                    <Form.Control as="textarea" placeholder="Tell others how much you like their dog!" rows={3} />
+                    <Form.Control as="textarea" placeholder="Tell others how much you like their dog!" rows={3} name='comment' onChange={handleDogInputChange}
+            value={commentFormData.commentText}/>
                 </Form.Group>
 
-                <Button as="input" type="submit" value="Post"/>
+                <Button as="input" type="submit" value="Post" onClick={handleClick}/>
 
             </Form>     
 
