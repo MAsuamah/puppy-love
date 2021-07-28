@@ -77,6 +77,7 @@ const DogProfile = () => {
 
                     <Col>
                         <Image class="dog-images" src={dog.images} alt={`Images of ${dog.name}`} thumbnail/>
+                        <div link={`/dog-image/${dog.images[0]}`}></div>
                     </Col>
 
                     <Col>

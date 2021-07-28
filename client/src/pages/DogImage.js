@@ -5,23 +5,27 @@ import Row from 'react-bootstrap/Row'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 //import Jumbotron from 'react-bootstrap/Jumbotron'
-import useParams from 'react-router-dom';
+import {useParams} from 'react-router-dom';
 import { useQuery, useMutation } from '@apollo/client';
 import Auth from '../utils/auth';
 import { GET_DOG_IMAGE } from '../utils/queries';
-import { ADD_IMAGE } from '../utils/mutations'
 import '../assets/styles/DogPages.css'
-import { FaDog } from "react-icons/fa";
 
 
 const DogImage = () => {
 
-    const { data } = useQuery(GET_DOG_IMAGES);
-    const dogImages = data?.images || [];
-    //console.log("user data image", userData)
- 
-    console.log(dogImages);
-    const dog = {name: 'Pepper'}
+    const [commentFormData, setCommentFormData] = useState({ commentText });
+    const [getDog] = useQuery(GET_DOG_IMAGE);
+    const [addComment] = useMutation(ADD_COMMENT);
+    const {imageId} = useParams();
+    const {loading, error, data} = getDog({variables: imageId});
+    const dogImage = data;
+
+    const handleDogInputChange = (event) => {
+        const { name, value } = event.target;
+        setCommentFormData({ commentText, [name]: value });
+        };
+
     const handleClick = async event => {
          event.preventDefault()
 
@@ -30,7 +34,7 @@ const DogImage = () => {
              return false;
          }
         try {
-              const { data } = await addComment ({ variables: (commentText) })
+              const { comment } = await addComment ({ variables: {id: imageId, commentFormData} });
           }
           catch (e) {
             console.error(e);
@@ -39,18 +43,11 @@ const DogImage = () => {
 
     return (
         <>
-            <Container class="user-icons">
-                insert dog's name from data below
-                <h1><FaDog/> {dog.name} Profile! </h1>
-            </Container>
-
             <Container fluid class="image-container">
-                <Row>
-                    {dogImages?.map(dog => (
-                         <Image src={dog.image} alt={`Profile Image for ${dog.name}`} fluid/>
-                    ))}
-                   
-                </Row>
+                <Image src={dogImage.link}  alt={`Profile Image for dog`} fluid/>
+
+                <div>{comment.map((comment) => {
+                return <div>{comment.username} + {comment.commentText} + {comment.createdAt} +</div>})}</div>
             </Container>
 
             <Form fluid class="form-background">
@@ -58,7 +55,8 @@ const DogImage = () => {
                 
                 <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
                     <Form.Label>Comment</Form.Label>
-                    <Form.Control as="textarea" placeholder="Tell others how much you like their dog!" rows={3} />
+                    <Form.Control as="textarea" placeholder="Tell others how much you like their dog!" rows={3} name='comment' onChange={handleDogInputChange}
+            value={commentFormData.commentText}/>
                 </Form.Group>
 
                 <Button as="input" type="submit" value="Post" onClick={handleClick}/>
