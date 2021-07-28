@@ -33,6 +33,13 @@ const resolvers = {
           .populate('dogs').populate('friends');
           return userData;
       },
+      /*"allUsers" is for testing purposes only */
+      allDogs: async(parent, args, context) => {
+        const userData = await Dog.find({})
+          .select('-__v')
+          .populate('dogs')
+          return userData;
+      },
       //searches by dog id - for dog profile
       dog: async(parent, args, context) => {
         if(context.user) {
