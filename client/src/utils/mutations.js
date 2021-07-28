@@ -142,7 +142,7 @@ export const DELETE_COMMENT = gql`
   }
 `;
 
-export const ADD_Friend = gql`
+export const ADD_FRIEND = gql`
   mutation addFriend($dog1: ID, $dog2: ID) {
     addFriend(dog1: $dog1, dog2: $dog2) {
         _id
@@ -161,7 +161,7 @@ export const ADD_Friend = gql`
   }
 `;
 
-export const REMOVE_Friend = gql`
+export const REMOVE_FRIEND = gql`
   mutation removeFriend($dog1: ID, $dog2: ID) {
     removeFriend(dog1: $dog1, dog2: $dog2) {
         _id

@@ -2,7 +2,8 @@ import React from 'react';
 import AppNavbar from './components/NavBar';
 import AppFooter from './components/Footer';
 import Home from './pages/Home';
-import DogImage from './pages/DogImage'
+import DogImage from './pages/DogImage';
+import DogProfile from './pages/DogProfile';
 import UserProfile from './pages/UserProfile';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { ApolloProvider } from '@apollo/client';
@@ -30,7 +31,7 @@ function App() {
 				<Switch>
 					<Route exact path='/' component={Home} />
 					<Route exact path='/user-profile' component={UserProfile} />
-			
+					<Route exact path='/dog-profile/:dogId' component={DogProfile} />
 					<Route exact path='/dog-image/:imageId' component={DogImage} />
 					<Route render={() => <h1 className='display-2'>Wrong page!</h1>} />
 				</Switch>
