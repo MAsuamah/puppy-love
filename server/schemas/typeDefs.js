@@ -29,8 +29,8 @@ const typeDefs = gql`
     deleteImage(_id: ID, dogId: ID): Dog
     addComment(_id: ID, commentText: String!): Comment
     deleteComment(_id: ID, imageId: ID): Image 
-    addFriend(dog1: ID, dog2: ID): Dog
-    removeFriend(dog1: ID, dog2: ID): Dog
+    addFriend(user1: ID, user2: ID): User
+    removeFriend(user1: ID, user2: ID): User
   }
   type Dog{
     _id: ID
@@ -39,9 +39,7 @@ const typeDefs = gql`
     gender: String
     age: Int
     username: String
-    friends: [Dog]
     images: [Image]
-    friendCount: Int
     imageCount: Int
   }
   type User{
@@ -50,8 +48,10 @@ const typeDefs = gql`
     email: String
     password: String
     city: String
+    friends: [User]
     dogs: [Dog]
     dogCount: Int
+    friendCount: Int
   }
   type Image{
     _id: ID
