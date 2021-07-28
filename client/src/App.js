@@ -6,20 +6,27 @@ import DogImage from './pages/DogImage';
 import DogProfile from './pages/DogProfile';
 import UserProfile from './pages/UserProfile';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import { ApolloProvider } from '@apollo/client';
-import ApolloClient from 'apollo-boost';
+import { ApolloProvider, ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client';
+import { setContext } from '@apollo/client/link/context';
+
+
+const httpLink = createHttpLink({
+  uri: '/graphql',
+});
+
+const authLink = setContext((_, { headers }) => {
+  const token = localStorage.getItem('id_token');
+  return {
+    headers: {
+      ...headers,
+      authorization: token ? `Bearer ${token}` : '',
+    },
+  };
+});
 
 const client = new ApolloClient({
-	request: operation => {
-		const token = localStorage.getItem('id_token');
-
-		operation.setContext({
-			headers: {
-				authorization: token ? `Bearer ${token}` : ''
-			}
-		});
-	},
-	uri: '/graphql'
+  link: authLink.concat(httpLink),
+  cache: new InMemoryCache(),
 });
 
 function App() {
