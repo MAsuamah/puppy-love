@@ -39,6 +39,7 @@ db.once('open', async () => {
     );
     createdDogs.push(createdDog);
   }
+})
 
   /*
   // create reactions
