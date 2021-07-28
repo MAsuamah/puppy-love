@@ -1,7 +1,8 @@
 import { useQuery, useMutation } from '@apollo/client';
 import React, { useState, useEffect } from 'react';
 import { Container, Row, Image, Button} from 'react-bootstrap';
-import { QUERY_GET_DOG, ADD_FRIEND, REMOVE_FRIEND } from '../utils/mutations';
+import { ADD_FRIEND, REMOVE_FRIEND } from '../utils/mutations';
+import { GET_SINGLE_DOG } from '../utils/queries';
 import '../assets/styles/DogPages.css'
 import { FaDog } from "react-icons/fa";
 
@@ -10,7 +11,7 @@ import Auth from '../utils/auth';
 
 const DogProfile = () => {
 
-    const { data } = useQuery(QUERY_GET_DOG);
+    const { data } = useQuery(GET_SINGLE_DOG);
     const [addFriend] = useMutation(ADD_FRIEND);
     const removeFriend = useMutation(REMOVE_FRIEND);
     
@@ -77,6 +78,7 @@ const DogProfile = () => {
 
                     <Col>
                         <Image class="dog-images" src={dog.images} alt={`Images of ${dog.name}`} thumbnail/>
+                        <div link={`/dog-image/${dog.images[0]}`}></div>
                     </Col>
 
                     <Col>

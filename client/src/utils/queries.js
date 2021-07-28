@@ -64,7 +64,7 @@ export const GET_MY_DOGS = gql`
     }
   }
 `;
-export const GET_SNGLE_DOG = gql `
+export const GET_SINGLE_DOG = gql `
   query dog($_id: ID!){
     dog(_id: $id){
       _id
