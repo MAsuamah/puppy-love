@@ -90,10 +90,9 @@ const DogProfile = () => {
 
                     {myDetails.username != userDetails.username && <Container fluid className="user-icons" className="profile-container">
                         {/* insert dog's name from data below */}
-                        
+                        <h1>Friend List</h1>
                         <Button as="input" type="button" value="Add Friend"/>
 
-                        <h1>Friend List</h1>
                         <Button as="input" type="button" value="Delete Friend"/>
                     </Container>
                     }
