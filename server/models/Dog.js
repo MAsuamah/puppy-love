@@ -20,10 +20,6 @@ const dogSchema = new Schema(
             required: true,
             ref: 'User'
             },
-        friends:[{
-            type: Schema.Types.ObjectId,
-            ref: 'Dog' 
-        }],
         images:[{
             type: Schema.Types.ObjectId,
             ref: 'Image'
@@ -36,10 +32,6 @@ const dogSchema = new Schema(
   },
 }
 );
-
-dogSchema.virtual('friendCount').get(function () {
-    return this.friends.length;
-  });
 
 dogSchema.virtual('imageCount').get(function () {
     return this.images.length;

@@ -19,29 +19,31 @@ const resolvers = {
       },
       /*"user" is for testing purposes only */
       user: async(parent, args, context) => {
+        if(context.user) {
         const userData = await User.findOne({ username: args.username })
           .select('-__v -password')
-          .populate('dogs')
+          .populate('dogs').populate('friends');
           return userData;
+        } throw new AuthenticationError('Not logged in');
       },
       /*"allUsers" is for testing purposes only */
       allUsers: async(parent, args, context) => {
         const userData = await User.find({})
           .select('-__v -password')
-          .populate('dogs')
+          .populate('dogs').populate('friends');
           return userData;
       },
       //searches by dog id - for dog profile
       dog: async(parent, args, context) => {
         if(context.user) {
-          const dogData = await Dog.findOne({_id: args._id}).populate('images').populate('friends');
+          const dogData = await Dog.findOne({_id: args._id}).populate('images')
           return dogData;
         } throw new AuthenticationError('Not logged in');
       },
       //searches by user id - for user dog list
       dogs: async(parent, args, context) => {
         if(context.user) {
-          return await Dog.find({username: context.user.username}).populate('images').populate('friends');
+          return await Dog.find({username: context.user.username}).populate('images');
         } throw new AuthenticationError('Not logged in');
       },
       //searches by image id - for comment page
@@ -215,30 +217,30 @@ const resolvers = {
         return updatedImage;
       } throw new AuthenticationError('Not logged in');
       },
-      addFriend: async(parent, {dog1, dog2}, context) => {
+      addFriend: async(parent, {user1, user2}, context) => {
         if(context.user) {
-          const updatedDog = await Dog.findOneAndUpdate(
-            {_id: dog1},
-            { $push: {friends: dog2}},
+          const updatedUser = await User.findOneAndUpdate(
+            {_id: user1},
+            { $push: {friends: user2}},
             { new: true}
           )
-          if (!updatedDog){
+          if (!updatedUser){
             throw new AuthenticationError("Couldn't find this dog");
           }
-          return updatedDog;
+          return updatedUser;
         } throw new AuthenticationError('Not logged in');
       },
-      removeFriend: async(parent, {dog1, dog2}, context) => {
+      removeFriend: async(parent, {user1, user2}, context) => {
         if(context.user) {
-          const updatedDog = await Dog.findOneAndUpdate(
-            {_id: dog1},
-            { $pull: {friends: dog2}},
+          const updatedUser = await User.findOneAndUpdate(
+            {_id: user1},
+            { $pull: {friends: user2}},
             { new: true}
           )
-          if (!updatedDog){
+          if (!updatedUser){
             throw new AuthenticationError("Couldn't find this dog");
           }
-          return updatedDog;
+          return updatedUser;
         } throw new AuthenticationError('Not logged in');
       },
       /* addReply: async(parent, args, context) => {

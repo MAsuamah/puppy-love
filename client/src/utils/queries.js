@@ -7,6 +7,11 @@ export const GET_ME = gql`
     username
     email
     city
+    friends {
+      _id
+      username
+    }
+    friendCount
     dogs {
         _id
         name
@@ -25,6 +30,11 @@ export const GET_USER = gql`
       username
       email
       city
+      friends {
+        _id
+        username
+      }
+      friendCount
       dogs {
         _id
         name
@@ -58,25 +68,20 @@ export const GET_MY_DOGS = gql`
         breed
         gender
         age
-        friends
         images
       }
     }
   }
 `;
 export const GET_SINGLE_DOG = gql `
-  query dog($_id: ID!){
+  query dog($id: ID!){
     dog(_id: $id){
       _id
       name
       breed
       gender
       age
-      friends {
-          _id
-          name
-      }
-      friendCount
+      username
       images{
           _id
           link
@@ -95,11 +100,6 @@ export const GET_ALL_DOGS = gql`
       breed
       gender
       age
-      friends {
-          _id
-          name
-      }
-      friendCount
       images{
           _id
           link
@@ -113,7 +113,7 @@ export const GET_ALL_DOGS = gql`
 
 
 export const GET_DOG_IMAGE = gql`
-  query image ($_id: ID!){
+  query image ($id: ID!){
     image(_id: $id){
       _id
       link
