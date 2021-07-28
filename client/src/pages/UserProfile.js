@@ -8,6 +8,7 @@ import DeleteUser from '../components/DeleteUser';
 import { useQuery } from '@apollo/client';
 import {GET_ME} from '../utils/queries';
 import Auth from '../utils/auth';
+import {Link} from "react-router-dom";
  
 const UserProfile = () => {
 
@@ -45,9 +46,11 @@ const UserProfile = () => {
         </div>
       </div>
       <section className="dog-list"> 
+        <ul>
          {userData.dogs.map((dog) => {
-          return (<li key={dog._id}>{dog.name}</li>)
+          return (<li><Link key={dog._id} to={`/dog-profile/${dog._id}`} target>{dog.name}'s Profile</Link></li>);
         })}
+        </ul>
       </section>
       <div className='update-user'>
         <UpdateUser  />
