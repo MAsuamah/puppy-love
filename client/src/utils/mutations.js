@@ -143,39 +143,25 @@ export const DELETE_COMMENT = gql`
 `;
 
 export const ADD_FRIEND = gql`
-  mutation addFriend($dog1: ID, $dog2: ID) {
-    addFriend(dog1: $dog1, dog2: $dog2) {
+  mutation addFriend($user1: ID, $user2: ID) {
+    addFriend(user1: $user1, user2: $user2) {
         _id
-        name
         username
-        breed
-        gender
-        age
         friends{
-          name
-          breed
-          gender
-          age
+          username
         }
     }
   }
 `;
 
 export const REMOVE_FRIEND = gql`
-  mutation removeFriend($dog1: ID, $dog2: ID) {
-    removeFriend(dog1: $dog1, dog2: $dog2) {
-        _id
-        name
+mutation removeFriend($user1: ID, $user2: ID) {
+  removeFriend(user1: $user1, user2: $user2) {
+      _id
+      username
+      friends{
         username
-        breed
-        gender
-        age
-        friends{
-          name
-          breed
-          gender
-          age
-        }
-    }
+      }
   }
+}
 `;

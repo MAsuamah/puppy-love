@@ -21,6 +21,10 @@ const userSchema = new Schema(
     city: { 
       type: String 
     },
+    friends:[{
+      type: Schema.Types.ObjectId,
+      ref: 'User' 
+    }],
     dogs: [{
         type: Schema.Types.ObjectId,
         ref: 'Dog'
@@ -51,6 +55,10 @@ userSchema.methods.isCorrectPassword = async function (password) {
 
 userSchema.virtual('dogCount').get(function () {
   return this.dogs.length;
+});
+
+userSchema.virtual('friendCount').get(function () {
+  return this.friends.length;
 });
 
 const User = model('User', userSchema);
