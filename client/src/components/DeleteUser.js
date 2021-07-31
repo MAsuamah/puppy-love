@@ -23,10 +23,7 @@ function DeleteUser() {
   };
 
   const handleDelete = async (event) => {
-      console.log("DeleteUser.js ln 26");
-      console.log(data.me._id);
-      console.log("_id: "+data.me._id);
-      console.log("password: "+formData.password);
+
       event.preventDefault();
 
       // check if form has everything (as per react-bootstrap docs)
@@ -37,8 +34,11 @@ function DeleteUser() {
       }
 
       try {
+
+        console.log("_id: "+data.me._id);
+        console.log("password: "+formData.password);
        await deleteUser({
-          variables: { _id: data.me._id, password: formData.password}
+          variables: { id: data.me._id, password: formData.password}
         });
         // await deleteUser({
         //    _id: data.me_id, password: formData.password

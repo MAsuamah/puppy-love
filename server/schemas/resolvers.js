@@ -1,6 +1,6 @@
 const { User, Dog, Dates, Image, Comment} = require('../models');
 const { AuthenticationError } = require('apollo-server-express');
-const { signToken } = require('../utils/auth');
+const { signToken, logout } = require('../utils/auth');
 
 const resolvers = {
     Query: {
@@ -89,32 +89,41 @@ const resolvers = {
         return { user, token };
       },
       updateUser: async(parent, args, context) => {
+
         if(context.user) {
-        return await User.findOneAndUpdate(
-          { _id: args._id}, 
+        const user = await User.findOneAndUpdate(
+          { _id: context.user._id}, 
           {
-            username: args.username,
             email: args.email,
             password: args.password,
             city: args.city
           },
            { new: true }
         );
+
+        const token = signToken(user);
+        return {token, user}
         } throw new AuthenticationError('Not logged in');
+
       },
-      deleteUser: async(parent, {_id, password}, context) => {
-          const user = await User.findOne({ _id });
-          console.log("resolvers.js ln 100");
-          console.log("_id: "+_id);
-          if(user) {
-          const correctPw = await user.isCorrectPassword(password);
+      deleteUser: async(parent, args, context) => {
+          const user = await User.findOne({ _id: args._id });
+
+          if(context.user) {
+          const correctPw = await user.isCorrectPassword(args.password);
           if(!correctPw) {
             throw new AuthenticationError('Incorrect Password');
           }
+
+          const userName = await User.findById({_id: args._id}).select('username');
+          await Dog.deleteMany({username: userName});
+
         return await User.findOneAndDelete(
-          { _id: _id }
+          { _id: args._id }
         );
          } throw new AuthenticationError('Not logged in');
+
+         logout();
       },
       addDog: async(parent, args, context) => {
         if(context.user) {

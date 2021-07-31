@@ -2,7 +2,7 @@ import React from 'react';
 import '../assets/styles/Home.css'
 import {BsHeartHalf} from 'react-icons/bs'
 import {FaArrowAltCircleDown} from 'react-icons/fa'
-import { useQuery } from '@apollo/client';
+import { useQuery} from '@apollo/client';
 import Auth from '../utils/auth';
 import {GET_ALL_DOGS} from '../utils/queries'
 import {Link} from "react-router-dom";
@@ -12,10 +12,6 @@ function Home() {
   const {loading, error, data} = useQuery(GET_ALL_DOGS);
 
       const token = Auth.loggedIn() ? Auth.getToken() : null;
-
-      if (!token) {
-        return false;
-      }
 
       if (loading) {
         return <h2>LOADING...</h2>;

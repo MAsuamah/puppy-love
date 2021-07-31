@@ -1,4 +1,4 @@
-import { useQuery, useMutation } from '@apollo/client';
+import { useQuery, useLazyQuery, useMutation } from '@apollo/client';
 import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Image, Button} from 'react-bootstrap';
 import { ADD_FRIEND, REMOVE_FRIEND } from '../utils/mutations';
@@ -28,20 +28,6 @@ const DogProfile = () => {
     }
     const dogDetails = dogInfo(dogId);
 
-    function userInfo (dogDetails){
-
-        const {...userQueryResponse} = useQuery(GET_USER, {variables: {username: dogDetails.username},});
-
-        if (userQueryResponse.loading) {
-            return <h2>LOADING...</h2>;
-        }
-        if (!userQueryResponse.data.user) {
-            throw new Error('You need to be logged in to view this page.');
-        }
-        return userQueryResponse.data.user;
-    }
-    const userDetails = userInfo(dogDetails);
-
     function myInfo (){
         const {...myQueryResponse} = useQuery(GET_ME);
         if (myQueryResponse.loading) {
@@ -53,6 +39,12 @@ const DogProfile = () => {
         return myQueryResponse.data.me;
     }
     const myDetails = myInfo();
+
+    const [userQueryResponse, {loading, error, data}] = useLazyQuery(GET_USER);
+
+        if (loading) {
+            return <h2>LOADING...</h2>;
+        }
   
     
     const addFriendClick = async () => {
@@ -84,12 +76,14 @@ const DogProfile = () => {
                         <h2>Gender: {dogDetails.gender}</h2>
                         <h2>Age: {dogDetails.age}</h2>
                         <h2>Breed: {dogDetails.breed}</h2>
-                        <h2>City: {userDetails.city}</h2>
-                        <h2>City: {dogDetails.username}</h2>
+                        <h2>Owner: {dogDetails.username}</h2>
                     </Container>
 
-                    {myDetails.username != userDetails.username && <Container fluid className="user-icons" className="profile-container">
-                        {/* insert dog's name from data below */}
+                    <Button as="input" type="button" value="Show Owner" onClick={() =>userQueryResponse({variables: {username: dogDetails.username}})}/>
+                    {data && data.username && myDetails.username != data.username && 
+
+                    <Container fluid className="user-icons" className="profile-container"> 
+                        <h2>City: {data.city }</h2>
                         <h1>Friend List</h1>
                         <Button as="input" type="button" value="Add Friend"/>
 
@@ -97,8 +91,9 @@ const DogProfile = () => {
                     </Container>
                     }
 
-                    {myDetails.username == userDetails.username && userDetails.friends && <Container fluid>
-                        <ul>{userDetails.friends.map((friends)=>{
+                    {data && data.username &&myDetails.username == data.username && data.friends && 
+                    <Container fluid>
+                        <ul>{data.friends.map((friends)=>{
                             <li>{friends.username}</li>
                         })}</ul>
                     </Container>}

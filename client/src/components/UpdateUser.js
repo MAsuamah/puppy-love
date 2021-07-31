@@ -27,7 +27,7 @@ function UpdateUser() {
 
   const handleFormSubmit = async(event) => {
     event.preventDefault();
-    console.log(userFormData.password);
+
     const form = event.currentTarget;
     if(form.checkValidity()===false) {
       event.preventDefault();
@@ -35,8 +35,9 @@ function UpdateUser() {
     }
 
     try{
-      const { data } = await updateUser({
-        variables: {...userFormData }
+
+      await updateUser({
+        variables: { email: userFormData.email, password: userFormData.password, city: userFormData.city }
       });
       handleClose(true);
     } catch(err){
