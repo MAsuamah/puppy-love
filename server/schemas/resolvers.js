@@ -33,6 +33,13 @@ const resolvers = {
           .populate('dogs').populate('friends');
           return userData;
       },
+      /*"allUsers" is for testing purposes only */
+      allDogs: async(parent, args, context) => {
+        const userData = await Dog.find({})
+          .select('-__v')
+          .populate('dogs')
+          return userData;
+      },
       //searches by dog id - for dog profile
       dog: async(parent, args, context) => {
         if(context.user) {
@@ -82,32 +89,43 @@ const resolvers = {
         return { user, token };
       },
       updateUser: async(parent, args, context) => {
+
         if(context.user) {
-        return await User.findOneAndUpdate(
-          { _id: args._id}, 
+        const user = await User.findOneAndUpdate(
+          { _id: context.user._id}, 
           {
-            username: args.username,
             email: args.email,
             password: args.password,
             city: args.city
           },
            { new: true }
         );
+
+        const token = signToken(user);
+        return {token, user}
         } throw new AuthenticationError('Not logged in');
+
       },
-      deleteUser: async(parent, {_id, password}, context) => {
-          const user = await User.findOne({ _id });
-          console.log("Resolvers.js ln 100");
-          console.log("_id: "+_id);
-          if(user) {
-          const correctPw = await user.isCorrectPassword(password);
+      deleteUser: async(parent, args, context) => {
+          const user = await User.findOne({ _id: args._id });
+
+          if(context.user) {
+          const correctPw = await user.isCorrectPassword(args.password);
           if(!correctPw) {
             throw new AuthenticationError('Incorrect Password');
           }
-        return await User.findOneAndDelete(
-          { _id: _id }
+
+          else{
+          const userName = await User.findById({_id: args._id}).select('username');
+          await Dog.deleteMany({username: userName.username});}
+
+          await User.findOneAndDelete(
+          { _id: args._id }
         );
+
          } throw new AuthenticationError('Not logged in');
+
+         
       },
       addDog: async(parent, args, context) => {
         if(context.user) {
