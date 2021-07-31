@@ -25,3 +25,10 @@
 #pup-arrow {
   margin-right: 10px;
 }
+
+@media screen and (max-width: 575px) {
+  #hero-tagline{
+    padding: 6px;
+  }
+}
+
