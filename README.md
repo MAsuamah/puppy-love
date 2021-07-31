@@ -30,7 +30,7 @@ To get this project up and running on your local machine do the following:
 - Clone respository to local machine
 - Run npm install 
 - Run npm start to host on local server 
-- To deploy App refer to delopment notes
+- To visit the deployed version click [here](https://puppy-love-date.herokuapp.com/)
 
 ### Prerequisites
 
