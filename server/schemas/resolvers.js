@@ -72,11 +72,14 @@ const resolvers = {
     },
     Mutation: {
       login: async(parent, { email, password }) => {
+        console.log("email "+email);
+        console.log('password '+password);
         const user = await User.findOne({ email });
         if (!user) {
           throw new AuthenticationError('No account found with this email');
         }
         const correctPw = await user.isCorrectPassword(password);
+        console.log(correctPw)
         if(!correctPw) {
           throw new AuthenticationError('Incorrect Password');
         }
@@ -89,13 +92,13 @@ const resolvers = {
         return { user, token };
       },
       updateUser: async(parent, args, context) => {
-
+        console.log("UpdateUser: "+args.password);
         if(context.user) {
         const user = await User.findOneAndUpdate(
           { _id: context.user._id}, 
           {
             email: args.email,
-            password: args.password,
+            //password: args.password,
             city: args.city
           },
            { new: true }

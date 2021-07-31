@@ -8,9 +8,8 @@ import { UPDATE_DOG } from '../utils/mutations';
 import { useParams } from 'react-router-dom';
 
 function UpdateDog() {
-  const [lgShow, setLgShow] = useState(false);
-  const [dogFormData, setDogFormData] = useState({ name:'',breed: '', age: '', gender: ''})
   const [show, setShow] = useState(false);
+  const [dogFormData, setDogFormData] = useState({ name:'',breed: '', age: '', gender: ''})
 
   const {dogId} = useParams();
 
@@ -50,11 +49,11 @@ function UpdateDog() {
   
   return (
     <>
-      <Button className='user-btn' onClick={() => setLgShow(true)} variant="dark">Update</Button>
+      <Button className='user-btn' onClick={() => setShow(true)} variant="dark">Update</Button>
       <Modal
         size="lg"
-        show={lgShow}
-        onHide={() => setLgShow(false)}
+        show={Show}
+        onHide={() => setShow(false)}
         aria-labelledby="example-modal-sizes-title-lg"
       >
         <Modal.Header closeButton>
