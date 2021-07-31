@@ -12,7 +12,9 @@ The users can also make plans for meeting up.
 
 * `Given a site where I can find my dogs a playdate`
 * `When I load Puppy Love`
-* `I am presented with a catalougue of dogs who are available for playdates and a navigation bar with the option to login or signup`
+* `I am presented with a catalogue of dogs who are available for playdates and a navigation bar with the option to login/signup.`
+* `When I click login/signup a modal appears and gives me the option to login with my email address and password, or signup with a Username, email address aand password.
+* 
 
 ## Features
 
