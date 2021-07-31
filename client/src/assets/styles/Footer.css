@@ -1,8 +1,4 @@
 
-#portfolioLink {
-    text-decoration: none;
-}
-
 .footer{
     background-color: #212529;
     max-width: 100% !important;
@@ -16,12 +12,15 @@
     bottom: 0;
 }
 
-a.nav-link {
+.footerLink {
+    text-decoration: none;
     color: rgb(196, 196, 196);
+    margin: 5px;
 }
 
 #footer-p{
-     color: #fff; 
+    color: #fff; 
     margin-bottom: 0px !important;
+    margin-right: 5px;
 }
 

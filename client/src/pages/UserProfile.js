@@ -48,12 +48,12 @@ const UserProfile = () => {
       <section className="dog-list"> 
         <ul>
          {userData.dogs.map((dog) => {
-          return (<li><Link key={dog._id} to={`/dog-profile/${dog._id}`} target>{dog.name}'s Profile</Link></li>);
+          return (<li key={dog._id}><Link key={dog._id} to={`/dog-profile/${dog._id}`}>{dog.name}'s Profile</Link></li>);
         })}
         </ul>
       </section>
       <div className='update-user'>
-        <UpdateUser  />
+        <UpdateUser />
         <DeleteUser />      
       </div>
     </div>

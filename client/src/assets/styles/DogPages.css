@@ -42,3 +42,7 @@
     background-color: #212529;
 }
 
+.footer .container {
+    padding-top: 100px;
+    padding-bottom: 0px;
+}
