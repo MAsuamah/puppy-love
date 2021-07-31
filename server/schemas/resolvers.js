@@ -97,7 +97,8 @@ const resolvers = {
       },
       deleteUser: async(parent, {_id, password}, context) => {
           const user = await User.findOne({ _id });
-          console.log(_id);
+          console.log(resolvers.js ln 100);
+          console.log("_id: "+_id);
           if(user) {
           const correctPw = await user.isCorrectPassword(password);
           if(!correctPw) {

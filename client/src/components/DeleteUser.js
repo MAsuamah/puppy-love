@@ -23,8 +23,9 @@ function DeleteUser() {
   };
 
   const handleDelete = async (event) => {
-    
-    console.log(formData.password);
+      console.log("DeleteUser.js ln 26");
+      console.log("_id: "+data.me_id);
+      console.log("password: "+formData.password);
       event.preventDefault();
 
       // check if form has everything (as per react-bootstrap docs)
@@ -47,7 +48,7 @@ function DeleteUser() {
         
       }
       handleClose(true);
-      Auth.logout;
+      //Auth.logout;
       setFormData({
         password: ''
       });
