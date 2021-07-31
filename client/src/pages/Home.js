@@ -1,4 +1,5 @@
 import React from 'react';
+import Footer from '../components/Footer'
 import '../assets/styles/Home.css'
 import {BsHeartHalf} from 'react-icons/bs'
 import {FaArrowAltCircleDown} from 'react-icons/fa'
@@ -37,6 +38,7 @@ function Home() {
           return (<li><Link key={dogs._id} to={`/dog-profile/${dogs._id}`} target>{dogs.name}'s Profile</Link><span>Images coming soon..!</span></li>);
         }))};
       </div>
+      <Footer />
     </div>
   )
 }

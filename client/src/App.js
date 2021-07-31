@@ -42,7 +42,7 @@ function App() {
 					<Route exact path='/dog-image/:imageId' component={DogImage} />
 					<Route render={() => <h1 className='display-2'>Wrong page!</h1>} />
 				</Switch>
-				<AppFooter/>
+		
 
 			</Router>
 		</ApolloProvider>
