@@ -53,8 +53,8 @@ const UserProfile = () => {
         </ul>
       </section>
       <div className='update-user'>
-        <UpdateUser  />
-        <DeleteUser />      
+        <UpdateUser/>
+        <DeleteUser/>      
       </div>
     </div>
   );

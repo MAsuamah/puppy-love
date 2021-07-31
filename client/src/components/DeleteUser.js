@@ -24,7 +24,6 @@ function DeleteUser() {
 
   const handleDelete = async (event) => {
       console.log("DeleteUser.js ln 26");
-      console.log(data.me._id);
       console.log("_id: "+data.me._id);
       console.log("password: "+formData.password);
       event.preventDefault();
@@ -85,7 +84,7 @@ function DeleteUser() {
           </Form.Group>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="dark" onClick={handleClose}>
+          <Button variant="dark" onClick={handleClose} >
             Cancel
           </Button>
           <Button variant="danger" onClick={handleDelete}>Delete</Button>
