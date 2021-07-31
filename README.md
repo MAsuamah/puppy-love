@@ -1,6 +1,5 @@
 # Puppy Love [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-
 Puppy Love is an app designed to find man's best friend a friend. Join the community of dog lovers online and set up doggy dates. Help spread love in the world, Puppy Love.
 
 ## Description
@@ -18,12 +17,13 @@ The users can also make plans for meeting up.
 * `When I am signed in, the navigation bar now has the options to view my user profile, add a pet, and logout.`
 * `When I click 'Your Profile' I am presented with my email address, city, username, pets and the options to update or delete my account.`
 * `When I click 'Add a Pet' I am presented with a modal that allows me to add a new dog by entering it breed, age, name, and gender.`
+* `When I am on the homepage and click on a dog, I am taken to their dog profile where I can see their info such as age, gender, breed, city, images of the dog, and the dogs friend list.`
 
 ### Wireframe
 ![screencapture-app-diagrams-net-2021-07-31-17_01_19](https://user-images.githubusercontent.com/77217156/127752324-2dab15f3-49e2-4e83-857a-2b78cb15a100.png)
 
 
-## Features
+## Current Features
 
 ## Getting Started
 
