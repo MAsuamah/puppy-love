@@ -37,6 +37,7 @@
 .update-user {
   position: absolute;
   top: 75%; 
+  margin-left: 40rem;
   display: flex;
   justify-content: center;
 }
@@ -53,10 +54,9 @@
   
 }
 
-
 @media screen and (max-width: 768px) { 
   #user-info {
-    position: absolute;  
+    position: fixed;  
     top: 20%;
     margin: 0% 10%;
   }
