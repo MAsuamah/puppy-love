@@ -18,6 +18,10 @@ The users can also make plans for meeting up.
 * `When I click 'Your Profile' I am presented with my email address, city, username, pets and the options to update or delete my account.`
 * `When I click 'Add a Pet' I am presented with a modal that allows me to add a new dog by entering it breed, age, name, and gender.`
 
+### Wireframe
+![screencapture-app-diagrams-net-2021-07-31-17_01_19](https://user-images.githubusercontent.com/77217156/127752324-2dab15f3-49e2-4e83-857a-2b78cb15a100.png)
+
+
 ## Features
 
 ## Getting Started
