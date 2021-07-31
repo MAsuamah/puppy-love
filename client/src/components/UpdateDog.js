@@ -3,14 +3,16 @@ import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import FloatingLabel from 'react-bootstrap/FloatingLabel'
-import Auth from '../utils/auth';
 import { useMutation } from '@apollo/client';
-import { UPDATE_USER } from '../utils/mutations';
+import { UPDATE_DOG } from '../utils/mutations';
+import { useParams } from 'react-router-dom';
 
-function UpdateUser() {
+function UpdateDog() {
   const [lgShow, setLgShow] = useState(false);
-  const [userFormData, setUserFormData] = useState({ email:'',password: '', city: ''})
+  const [dogFormData, setDogFormData] = useState({ name:'',breed: '', age: '', gender: ''})
   const [show, setShow] = useState(false);
+
+  const {dogId} = useParams();
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -19,10 +21,10 @@ function UpdateUser() {
   const [ validated] = useState(false);
 
   const [showAlert, setShowAlert] = useState(false);
-  const [updateUser] = useMutation(UPDATE_USER);
+  const [updateDog] = useMutation(UPDATE_DOG);
   const handleInputChange = (event) => {
     const { name, value } = event.target;
-    setUserFormData({ ...userFormData, [name]: value });
+    setDogFormData({ ...dogFormData, [name]: value });
   };
 
   const handleFormSubmit = async(event) => {
@@ -36,20 +38,19 @@ function UpdateUser() {
 
     try{
 
-      const {token} = await updateUser({
-        variables: { email: userFormData.email, password: userFormData.password, city: userFormData.city }
+       await updateDog({
+  variables: { id: dogId, name: dogFormData.name, gender: dogFormData.gender, breed: dogFormData.breed, age: parseInt(dogFormData.age) }
       });
       handleClose(true);
 
     } catch(err){
       console.error(err);
     }
-
-    Auth.logout();
   }
+  
   return (
     <>
-      <Button className='user-btn' onClick={() => setLgShow(true)} variant="dark">Update Account</Button>
+      <Button className='user-btn' onClick={() => setLgShow(true)} variant="dark">Update</Button>
       <Modal
         size="lg"
         show={lgShow}
@@ -58,25 +59,30 @@ function UpdateUser() {
       >
         <Modal.Header closeButton>
           <Modal.Title id="example-modal-sizes-title-lg">
-            Update Account
+            Update Dog Information
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <img id="update-img" src={require(`../assets/images/josh-hild-tkn_izTEVGo-unsplash.jpg`).default} alt="dog owner holding their dog over there shoulder"></img>
-          {/* FORM TO UPDATE USER*/}
+          {/* FORM TO UPDATE DOG*/}
           <Form>
-            <FloatingLabel controlId="floatingEmail" label="Email address" className="mb-3">
-              <Form.Control type="email" name="email" placeholder="name@example.com" onChange={handleInputChange} value={userFormData.email}/>
+            <FloatingLabel controlId="floatingName" label="Name" className="mb-3">
+              <Form.Control type="name" name="name" placeholder={dogFormData.name} onChange={handleInputChange} value={dogFormData.name}/>
             </FloatingLabel>
 
-            <FloatingLabel controlId="floatingPassword" label="Password" className="mb-3">
-              <Form.Control type="password" name="password" placeholder="Password" onChange={handleInputChange} value={userFormData.password}/>
+            <FloatingLabel controlId="floatingGender" label="Gender" className="mb-3">
+              <Form.Control type="gender" name="gender" placeholder={dogFormData.gender} onChange={handleInputChange} value={dogFormData.gender}/>
             </FloatingLabel>
 
-            <FloatingLabel controlId="floatingCity" label="City" className="mb-3">
-              <Form.Control type="city"name="city" placeholder="City" onChange={handleInputChange} value={userFormData.city}/>
+            <FloatingLabel controlId="floatingAge" label="Age" className="mb-3">
+              <Form.Control type="age"name="age" placeholder={dogFormData.age} onChange={handleInputChange} value={dogFormData.age}/>
             </FloatingLabel>
-            {/* UPDATE USER BUTTON */}
+
+            <FloatingLabel controlId="floatingBreed" label="Breed" className="mb-3">
+              <Form.Control type="breed"name="breed" placeholder={dogFormData.breed} onChange={handleInputChange} value={dogFormData.breed}/>
+            </FloatingLabel>
+
+            {/* UPDATE DOG BUTTON */}
             <Button variant="dark" type="submit" onClick={handleFormSubmit}>
               Update
             </Button>
@@ -87,4 +93,4 @@ function UpdateUser() {
   );
 }
 
-export default UpdateUser;
+export default UpdateDog;
