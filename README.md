@@ -1,4 +1,5 @@
-# Puppy Love
+# Puppy Love [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 
 Puppy Love is an app designed to find man's best friend a friend. Join the community of dog lovers online and set up doggy dates. Help spread love in the world, Puppy Love.
 
@@ -32,51 +33,6 @@ To get this project up and running on your local machine do the following:
 - Run npm start to host on local server 
 - To visit the deployed version click [here](https://puppy-love-date.herokuapp.com/)
 
-### Prerequisites
-
-<!-- What things you need to install the software and how to install them
-
-```
-Give examples
-``` -->
-
-### Installing
-
-<!-- <!-- A step by step series of examples that tell you how to get a development env running
-
-Say what the step will be -->
-
-<!-- ```
-Give the example
-``` -->
-
-And repeat
-
-```
-until finished
-```
-
-End with an example of getting some data out of the system or using it for a little demo -->
-
-## Running the tests
-
-<!-- Explain how to run the automated tests for this system -->
-
-### Break down into end to end tests
-
-<!-- Explain what these tests test and why
-
-```
-Give an example
-``` -->
-
-### And coding style tests
-
-<!-- Explain what these tests test and why
-
-```
-Give an example
-``` -->
 
 ## Deployment
 
@@ -84,25 +40,25 @@ To deploy the app we used Heroku. The live app can we viewed [here](https://pupp
 
 ## Built With
 
-* [apollo-server-express](http://www.dropwizard.io/1.0.2/docs/)
-* [apollo/client]()
-* [apollo/react-hooks]()
-* [bootstrap]()
-* [bcrypt](https://maven.apache.org/) 
-* [express](https://rometools.github.io/rome/)
-* [faker]()
-* [graphql]()
-* [jsonwebtoken]()
-* [jwt-decode]()
-* [mongoose]()
-* [react]()
-* [react-bootstrap]()
-* [react-bootstrap-validation]()
-* [react-dom]()
-* [react-external-link]()
-* [react-icons]()
-* [react-router-dom]()
-* [react-scripts]()
+* apollo-server-express
+* apollo/client
+* apollo/react-hooks
+* bootstrap
+* bcrypt 
+* express
+* faker
+* graphql
+* jsonwebtoken
+* jwt-decode
+* mongoose
+* react
+* react-bootstrap
+* react-bootstrap-validation
+* react-dom
+* react-external-link
+* react-icons
+* react-router-dom
+* react-scripts
 
 ## Contributing
 
