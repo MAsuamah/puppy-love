@@ -24,7 +24,7 @@ function Home() {
        const allDogsData = data;
 
   return (
-    <div className = 'gtfo'>
+    <div className="home-dash">
       <div className="hero-image">
         <h1 id="hero-tagline">Find Your Next Playdate <br/>
           <BsHeartHalf />
