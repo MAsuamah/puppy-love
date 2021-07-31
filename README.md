@@ -10,6 +10,10 @@ The users can also make plans for meeting up.
 ### User Story
 `As A dog owner, I want to connect with other dog owners, so that my dog can go on dates with other dogs.`
 
+`Given a site where I can find my dogs a playdate`
+`When I load Puppy Love`
+`I am presented with a catalougue of dogs who are available for playdates and a navigation bar with the option to login or signup`
+
 ## Features
 
 ## Getting Started
