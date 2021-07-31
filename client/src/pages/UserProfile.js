@@ -9,7 +9,8 @@ import { useQuery } from '@apollo/client';
 import {GET_ME} from '../utils/queries';
 import Auth from '../utils/auth';
 import {Link} from "react-router-dom";
- 
+import { Container, Row, Col, Image, Button} from 'react-bootstrap';
+
 const UserProfile = () => {
 
       // set state for alert
@@ -33,7 +34,8 @@ const UserProfile = () => {
        const userData = data.me;
 
   return (
-    <div className="user-profile">
+    <>
+    <Container fluid className="user-profile" >
       <div id="user-info">
         <div className="user-icons">  
           <p><FaRegUserCircle /> {userData.username}</p>
@@ -44,8 +46,7 @@ const UserProfile = () => {
         <div className="user-icons">       
           <p><MdLocationCity /> {userData.city}</p>
         </div>
-      </div>
-      <section className="dog-list"> 
+        <section className="dog-list"> 
         <ul>
          {userData.dogs.map((dog) => {
           return (<li key={dog._id}><Link key={dog._id} to={`/dog-profile/${dog._id}`}>{dog.name}'s Profile</Link></li>);
@@ -56,8 +57,10 @@ const UserProfile = () => {
         <UpdateUser />
         <DeleteUser />      
       </div>
-    </div>
-  );
+      </div>
+    </Container>
+    </>
+    )
 };
 
 export default UserProfile;

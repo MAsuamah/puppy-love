@@ -26,6 +26,12 @@
   margin-right: 10px;
 }
 
+.home-dash{
+  display:flex;
+  flex-direction: column;
+  padding-bottom: 100px;
+}
+
 @media screen and (max-width: 575px) {
   #hero-tagline{
     padding: 6px;
