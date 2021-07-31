@@ -46,17 +46,19 @@ const UserProfile = () => {
         <div className="user-icons">       
           <p><MdLocationCity /> {userData.city}</p>
         </div>
-        <section className="dog-list"> 
+      </div>
+
+      <div className="dog-list"> 
         <ul>
          {userData.dogs.map((dog) => {
           return (<li key={dog._id}><Link key={dog._id} to={`/dog-profile/${dog._id}`}>{dog.name}'s Profile</Link></li>);
         })}
         </ul>
-      </section>
+      </div>
+      
       <div className='update-user'>
         <UpdateUser />
         <DeleteUser />      
-      </div>
       </div>
     </Container>
     </>
