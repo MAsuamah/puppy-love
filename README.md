@@ -1,4 +1,4 @@
-# puppy-love
+# Puppy Love
 
 Puppy Love is an app designed to find man's best friend a friend. Join the community of dog lovers online and set up doggy dates. Help spread love in the world, Puppy Love.
 
