@@ -24,7 +24,8 @@ function DeleteUser() {
 
   const handleDelete = async (event) => {
       console.log("DeleteUser.js ln 26");
-      console.log("_id: "+data.me_id);
+      console.log(data.me._id);
+      console.log("_id: "+data.me._id);
       console.log("password: "+formData.password);
       event.preventDefault();
 
@@ -37,7 +38,7 @@ function DeleteUser() {
 
       try {
        await deleteUser({
-          variables: { _id: data.me_id, password: formData.password}
+          variables: { _id: data.me._id, password: formData.password}
         });
         // await deleteUser({
         //    _id: data.me_id, password: formData.password
