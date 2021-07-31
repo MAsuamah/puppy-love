@@ -23,7 +23,6 @@ function DeleteUser() {
   };
 
   const handleDelete = async (event) => {
-
       event.preventDefault();
 
       // check if form has everything (as per react-bootstrap docs)
@@ -85,7 +84,7 @@ function DeleteUser() {
           </Form.Group>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="dark" onClick={handleClose}>
+          <Button variant="dark" onClick={handleClose} >
             Cancel
           </Button>
           <Button variant="danger" onClick={handleDelete}>Delete</Button>

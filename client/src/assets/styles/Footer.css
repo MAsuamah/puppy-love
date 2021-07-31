@@ -23,3 +23,19 @@
     margin-right: 5px;
 }
 
+@media screen and (max-width: 575px) { 
+    .footerLink, #footer-p {
+        font-size: 11px
+    }
+    .footerLink{
+        margin: 0px 4px 0px 0px;
+    }
+    #footer-p{
+        margin-left: 4px;
+    }
+    .footer.container{
+        padding:0;
+        margin: 0;
+    }
+}
+
