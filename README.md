@@ -2,6 +2,15 @@
 
 Puppy Love is an app designed to find man's best friend a friend. Join the community of dog lovers online and set up doggy dates. Help spread love in the world, Puppy Love.
 
+## Description
+
+This a social app for pets where the user can sign their pets up and make a pet profile with images. Those with profiles can add friends and comment on photos.
+The users can also make plans for meeting up.
+
+### User Story
+`As A dog owner, I want to connect with other dog owners, so that my dog can go on dates with other dogs.`
+
+
 ## Getting Started
 
 To get this project up and running on your local machine do the following:
