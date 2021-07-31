@@ -10,6 +10,7 @@ The users can also make plans for meeting up.
 ### User Story
 `As A dog owner, I want to connect with other dog owners, so that my dog can go on dates with other dogs.`
 
+## Features
 
 ## Getting Started
 
