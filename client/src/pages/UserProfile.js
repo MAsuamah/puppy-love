@@ -48,7 +48,7 @@ const UserProfile = () => {
       <section className="dog-list"> 
         <ul>
          {userData.dogs.map((dog) => {
-          return (<li key={dog._id}><Link key={dog._id} to={`/dog-profile/${dog._id}`} target='_blank'>{dog.name}'s Profile</Link></li>);
+          return (<li key={dog._id}><Link key={dog._id} to={`/dog-profile/${dog._id}`}>{dog.name}'s Profile</Link></li>);
         })}
         </ul>
       </section>

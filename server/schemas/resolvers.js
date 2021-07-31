@@ -1,6 +1,6 @@
 const { User, Dog, Dates, Image, Comment} = require('../models');
 const { AuthenticationError } = require('apollo-server-express');
-const { signToken, logout } = require('../utils/auth');
+const { signToken } = require('../utils/auth');
 
 const resolvers = {
     Query: {
@@ -115,15 +115,17 @@ const resolvers = {
             throw new AuthenticationError('Incorrect Password');
           }
 
+          else{
           const userName = await User.findById({_id: args._id}).select('username');
-          await Dog.deleteMany({username: userName});
+          await Dog.deleteMany({username: userName.username});}
 
-        return await User.findOneAndDelete(
+          await User.findOneAndDelete(
           { _id: args._id }
         );
+
          } throw new AuthenticationError('Not logged in');
 
-         logout();
+         
       },
       addDog: async(parent, args, context) => {
         if(context.user) {

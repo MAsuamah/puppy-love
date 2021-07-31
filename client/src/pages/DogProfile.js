@@ -7,6 +7,8 @@ import '../assets/styles/DogPages.css'
 import { FaDog } from "react-icons/fa";
 import Auth from '../utils/auth';
 import { useParams } from 'react-router-dom';
+import UpdateDog from '../components/UpdateDog';
+import DeleteDog from '../components/DeleteDog';
 
 const DogProfile = () => {
 
@@ -77,9 +79,10 @@ const DogProfile = () => {
                         <h2>Age: {dogDetails.age}</h2>
                         <h2>Breed: {dogDetails.breed}</h2>
                         <h2>Owner: {dogDetails.username}</h2>
+                        <UpdateDog /><DeleteDog />
                     </Container>
 
-                    <Button as="input" type="button" value="Show Owner" onClick={() =>userQueryResponse({variables: {username: dogDetails.username}})}/>
+                    {/* <Button as="input" type="button" value="Show Owner" onClick={() =>userQueryResponse({variables: {username: dogDetails.username}})}/>
                     {data && data.username && myDetails.username != data.username && 
 
                     <Container fluid className="user-icons" className="profile-container"> 
@@ -90,13 +93,12 @@ const DogProfile = () => {
                         <Button as="input" type="button" value="Delete Friend"/>
                     </Container>
                     }
-
                     {data && data.username &&myDetails.username == data.username && data.friends && 
                     <Container fluid>
                         <ul>{data.friends.map((friends)=>{
                             <li>{friends.username}</li>
                         })}</ul>
-                    </Container>}
+                    </Container>} */}
 
             <Container fluid className="image-container">
 
