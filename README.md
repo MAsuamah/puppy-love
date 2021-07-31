@@ -27,6 +27,9 @@ The users can also make plans for meeting up.
 
 
 ## Current Features
+
+### Dog Catalogue
+
 ### Login/SignUp
 <img width="1439" alt="Screen Shot 2021-07-31 at 7 14 34 PM" src="https://user-images.githubusercontent.com/77217156/127754454-7b6dbc7c-32e6-4cee-b63c-f1044b6debd7.png">
 
