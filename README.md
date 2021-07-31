@@ -15,8 +15,8 @@ The users can also make plans for meeting up.
 * `I am presented with a catalogue of dogs who are available for playdates and a navigation bar with the option to login/signup.`
 * `When I click login/signup, a modal appears and gives me the option to login with my email address and password, or signup with a Username, email address, city and password.`
 * `When I am signed in, the navigation bar now has the options to view my user profile, add a pet, and logout.`
-* `When I click 'Your Profile' I am presented with my email address, city, username, pets and the options to update or delete my account`
-* `When I click 'Add a Pet' I am presented with a modal that allows me to add a newe dog by entering it breed, age, name, and gender.
+* `When I click 'Your Profile' I am presented with my email address, city, username, pets and the options to update or delete my account.`
+* `When I click 'Add a Pet' I am presented with a modal that allows me to add a newe dog by entering it breed, age, name, and gender.`
 
 ## Features
 
