@@ -8,8 +8,7 @@
     justify-content: center;
     padding: 3px 0px;
     align-items: center;
-    position: fixed;
-    bottom: 0;
+    position: absolute;
 }
 
 .footerLink {
