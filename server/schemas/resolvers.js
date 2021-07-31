@@ -102,14 +102,17 @@ const resolvers = {
         );
         } throw new AuthenticationError('Not logged in');
       },
-      deleteUser: async(parent, args, context) => {
-         if(context.user) {
-          const correctPw = await context.user.isCorrectPassword(args.password);
+      deleteUser: async(parent, {_id, password}, context) => {
+          const user = await User.findOne({ _id });
+          console.log("resolvers.js ln 100");
+          console.log("_id: "+_id);
+          if(user) {
+          const correctPw = await user.isCorrectPassword(password);
           if(!correctPw) {
             throw new AuthenticationError('Incorrect Password');
           }
         return await User.findOneAndDelete(
-          { _id: args._id }
+          { _id: _id }
         );
          } throw new AuthenticationError('Not logged in');
       },
