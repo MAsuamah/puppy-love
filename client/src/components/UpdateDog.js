@@ -40,11 +40,12 @@ function UpdateDog() {
        await updateDog({
   variables: { id: dogId, name: dogFormData.name, gender: dogFormData.gender, breed: dogFormData.breed, age: parseInt(dogFormData.age) }
       });
-      handleClose(true);
+      
 
     } catch(err){
       console.error(err);
     }
+    handleClose(true);
   }
   
   return (
