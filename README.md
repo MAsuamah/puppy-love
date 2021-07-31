@@ -8,7 +8,7 @@ This a social app for pets where the user can sign their pets up and make a pet 
 The users can also make plans for meeting up.
 
 ### User Story
-* `As A dog owner, I want to connect with other dog owners, so that my dog can go on dates with other dogs.`
+`As A dog owner, I want to connect with other dog owners, so that my dog can go on dates with other dogs.`
 
 * `Given a site where I can find my dogs a playdate`
 * `When I load Puppy Love`
