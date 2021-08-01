@@ -54,6 +54,7 @@ On your profile you will your email address, city, username, and your pets with 
 ![screencapture-localhost-3000-user-profile-2021-08-01-09_28_09](https://user-images.githubusercontent.com/77217156/127772711-158db1b1-9f09-4fae-b59b-a250a4f202ae.png)
 
 ### Dog Profile
+The dog profile allows you to view its gender, breed, age, and owner. For your own pets you can upload an image, update the dog, and delete the dog.
 ![screencapture-localhost-3000-dog-profile-610699484b6a904e7d70085f-2021-08-01-09_37_38](https://user-images.githubusercontent.com/77217156/127772945-3ccb2880-cffd-4d1a-9838-feb4cdb2829e.png)
 
 
