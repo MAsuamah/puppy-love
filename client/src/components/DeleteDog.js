@@ -5,11 +5,13 @@ import { useParams } from 'react-router-dom';
 import { useMutation, useQuery } from '@apollo/client';
 import Auth from '../utils/auth';
 import{ DELETE_DOG } from '../utils/mutations';
+import { useHistory} from 'react-router';
 
 
 function DeleteDog() {
   const [deleteDog] = useMutation(DELETE_DOG);
   const [show, setShow] = useState(false);
+  const history = useHistory();
 
   const {dogId} = useParams();
 
@@ -37,6 +39,8 @@ function DeleteDog() {
         
       }
       handleClose(true);
+      history.push('/user-profile');
+      location.reload();
   };
 
   return (

@@ -5,6 +5,7 @@ import Alert from 'react-bootstrap/Alert'
 import FloatingLabel from 'react-bootstrap/FloatingLabel'
 import { useMutation } from '@apollo/client';
 import { ADD_DOG } from '../utils/mutations';
+import { useHistory} from 'react-router';
 
 function CreatePet() {
 
@@ -24,6 +25,8 @@ function CreatePet() {
 
   // set state for alert
   const [showAlert, setShowAlert] = useState(false);
+
+  const history = useHistory();
 
   const handleDogInputChange = (event) => {
     const { name, value } = event.target;
@@ -55,6 +58,9 @@ function CreatePet() {
       gender: '',
       age: ''
     });
+
+      history.push('/user-profile');
+      location.reload();
   };
 
 
