@@ -1,7 +1,7 @@
 .hero-image {
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../images/mia-anderson-2k6v10Y2dIg-unsplash.jpg);
   background-size:cover;
-  height: 93vh;
+  height: 95vh;
 }
 
 #hero-tagline {
@@ -32,9 +32,33 @@
   padding-bottom: 100px;
 }
 
+
+.dog-li {
+  width: 50%;
+  position: relative;
+  left: 25%;
+}
+
 @media screen and (max-width: 575px) {
   #hero-tagline{
     padding: 6px;
   }
 }
 
+.image-text{
+  color:rgb(255, 255, 255);
+}
+
+.dog-members{
+  display: flex;
+  flex-direction: row;
+
+}
+
+.header-styling{
+  padding-left: 40%;
+  border-color: black;
+  border-radius: 10%;
+  color: crimson;
+  font-weight: bolder;
+}

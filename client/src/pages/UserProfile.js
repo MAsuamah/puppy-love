@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import '../assets/styles/UserProfile.css'
 import {FaRegUserCircle} from 'react-icons/fa';
+import {BiBone} from 'react-icons/bi';
 import {FiMail} from 'react-icons/fi';
 import {MdLocationCity} from 'react-icons/md';
 import UpdateUser from '../components/UpdateUser';
@@ -37,21 +38,23 @@ const UserProfile = () => {
     <>
     <Container fluid className="user-profile" >
       <div id="user-info">
-        <div className="user-icons">  
-          <p><FaRegUserCircle /> {userData.username}</p>
-        </div>
-        <div className="user-icons">    
-          <p><FiMail /> {userData.email}</p>
-        </div>
-        <div className="user-icons">       
-          <p><MdLocationCity /> {userData.city}</p>
+        <div id="u-info">
+          <div className="user-icons">  
+            <p><FaRegUserCircle /> {userData.username}</p>
+          </div>
+          <div className="user-icons">    
+            <p><FiMail /> {userData.email}</p>
+          </div>
+          <div className="user-icons">       
+            <p><MdLocationCity /> {userData.city}</p>
+          </div>
         </div>
       </div>
 
       <div className="dog-list"> 
         <ul>
          {userData.dogs.map((dog) => {
-          return (<li key={dog._id}><Link key={dog._id} to={`/dog-profile/${dog._id}`}>{dog.name}'s Profile</Link></li>);
+          return (<li key={dog._id}><Link key={dog._id} to={`/dog-profile/${dog._id}`}><BiBone/>{dog.name}'s Profile<BiBone/></Link></li>);
         })}
         </ul>
       </div>

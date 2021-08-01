@@ -132,14 +132,15 @@ export const ADD_COMMENT = gql`
 `;
 
 export const DELETE_COMMENT = gql`
-  mutation deleteComment($id: ID, $imageId: ID) {
-    deleteComment(_id: $id, imageId: $imageId) {
-      comment {
-        _id
-        commentText
+mutation deleteComment($id: ID, $imageId: ID) {
+  deleteComment(_id: $id, imageId: $imageId) {
+      _id
+        comments{
+          _id
+          commentText
         }
-    }
   }
+}
 `;
 
 export const ADD_FRIEND = gql`

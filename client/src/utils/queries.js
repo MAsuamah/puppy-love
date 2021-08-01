@@ -117,10 +117,13 @@ export const GET_DOG_IMAGE = gql`
     image(_id: $id){
       _id
       link
+      name
+      dogId
       caption
       comments{
         _id
         commentText
+        username
         createdAt
         replies
         repliesCount
@@ -135,7 +138,9 @@ export const GET_DOG_IMAGES = gql `
     images{
       _id
       link
+      name
       caption
+      dogId
       comments{
         _id
         commentText
@@ -144,6 +149,24 @@ export const GET_DOG_IMAGES = gql `
         repliesCount
       }
       createdAt
+    }
+  }
+`;
+
+export const GET_ALL_IMAGES = gql `
+  {
+    allImages{
+      _id
+      link
+      name
+      caption
+      dogId
+      comments{
+        _id
+        commentText
+        createdAt
+        username
+      }
     }
   }
 `;
