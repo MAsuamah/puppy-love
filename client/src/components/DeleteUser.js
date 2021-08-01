@@ -8,6 +8,8 @@ import{ DELETE_USER } from '../utils/mutations';
 import { GET_ME } from '../utils/queries';
 import { Form } from 'react-bootstrap';
 
+import { useHistory} from 'react-router';
+
 function DeleteUser() {
   const [deleteUser] = useMutation(DELETE_USER);
   const [show, setShow] = useState(false);
@@ -16,6 +18,8 @@ function DeleteUser() {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const {loading, error, data} = useQuery(GET_ME);
+
+  const history = useHistory();
 
   const handleInputChange = (event) => {
     const { value } = event.target;
@@ -50,7 +54,7 @@ function DeleteUser() {
       setFormData({
         password: ''
       });
-
+      history.push('/')
       Auth.logout();
   };
 
