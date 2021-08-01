@@ -7,7 +7,7 @@ Puppy Love is an app designed to find man's best friend a friend. Join the commu
 
 ## Description
 
-This a social app for pets where the user can sign their pets up and make a pet profile with images. Those with profiles can add friends and comment on photos.
+This is a social app for pets where the user can sign their pets up and make a pet profile with images. Those with profiles can add friends and comment on photos.
 The users can also make plans for meeting up.
 
 ### User Story
