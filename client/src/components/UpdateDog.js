@@ -53,7 +53,7 @@ function UpdateDog() {
       <Button className='user-btn' onClick={() => setShow(true)} variant="dark">Update</Button>
       <Modal
         size="lg"
-        show={Show}
+        show={show}
         onHide={() => setShow(false)}
         aria-labelledby="example-modal-sizes-title-lg"
       >
