@@ -38,14 +38,16 @@ const UserProfile = () => {
     <>
     <Container fluid className="user-profile" >
       <div id="user-info">
-        <div className="user-icons">  
-          <p><FaRegUserCircle /> {userData.username}</p>
-        </div>
-        <div className="user-icons">    
-          <p><FiMail /> {userData.email}</p>
-        </div>
-        <div className="user-icons">       
-          <p><MdLocationCity /> {userData.city}</p>
+        <div id="u-info">
+          <div className="user-icons">  
+            <p><FaRegUserCircle /> {userData.username}</p>
+          </div>
+          <div className="user-icons">    
+            <p><FiMail /> {userData.email}</p>
+          </div>
+          <div className="user-icons">       
+            <p><MdLocationCity /> {userData.city}</p>
+          </div>
         </div>
       </div>
 
