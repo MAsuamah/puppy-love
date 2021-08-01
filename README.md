@@ -45,7 +45,7 @@ The users can also make plans for meeting up.
 ## Future Developments
 
 ### Ability to Organize Doggy Dates
-`Coming Soon`
+As the wireframe shows we would like to add the ability for pups to plan meetups right on the website. When your visit a dog profile you should be able to find a middle button click it select a date to meetup. We would also like to implement a map where users can find nearby dog parks.
 
 ### Ability to Search Nearby Dog Parks
 `Coming Soon`
