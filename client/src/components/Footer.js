@@ -16,13 +16,13 @@ function AppFooter () {
             <ExternalLink className = 'footerLink' href="https://liaof.github.io/portfolio/">
                 <span>Fanxi Liao</span>
             </ExternalLink>
-            <ExternalLink className = 'footerLink' href="">
+            <ExternalLink className = 'footerLink' href="https://marilynpapadopoulos.github.io/react-portfolio/">
                 <span>Marilyn Papadopoulos</span>
             </ExternalLink>
-            <ExternalLink className = 'footerLink' href="">
+            <ExternalLink className = 'footerLink' href="https://masuamah.dev/">
                 <span>Michelle Asuamah</span>
             </ExternalLink>
-            <ExternalLink className = 'footerLink' href="">
+            <ExternalLink className = 'footerLink' href="https://syedmtirmizi.github.io/C20.ReactPortfolio.github.io/">
                 <span>Syed Murtaza Tirmizi</span>
             </ExternalLink>
         </Container>
