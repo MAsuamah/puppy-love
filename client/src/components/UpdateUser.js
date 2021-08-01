@@ -36,16 +36,14 @@ function UpdateUser() {
 
     try{
 
-      const {token} = await updateUser({
+      const userUpdated = await updateUser({
         variables: { email: userFormData.email, password: userFormData.password, city: userFormData.city }
       });
       handleClose(true);
-
     } catch(err){
       console.error(err);
     }
-
-    Auth.logout();
+    
   }
   return (
     <>
