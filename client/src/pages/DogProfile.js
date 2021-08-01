@@ -1,7 +1,7 @@
 import { useQuery, useLazyQuery, useMutation } from '@apollo/client';
 import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Image, Button} from 'react-bootstrap';
-import { ADD_FRIEND, REMOVE_FRIEND } from '../utils/mutations';
+import { ADD_FRIEND, REMOVE_FRIEND, DELETE_IMAGE } from '../utils/mutations';
 import { GET_SINGLE_DOG, GET_USER, GET_ME } from '../utils/queries';
 import '../assets/styles/DogPages.css'
 import { FaDog } from "react-icons/fa";
@@ -9,11 +9,14 @@ import Auth from '../utils/auth';
 import { useParams } from 'react-router-dom';
 import UpdateDog from '../components/UpdateDog';
 import DeleteDog from '../components/DeleteDog';
+import UploadImage from '../components/UploadImage';
+import {Link} from "react-router-dom";
 
 const DogProfile = () => {
 
     const [addFriend] = useMutation(ADD_FRIEND);
     const [removeFriend] = useMutation(REMOVE_FRIEND);
+    const [deleteImage] = useMutation(DELETE_IMAGE);
     const {dogId} = useParams();
 
     function dogInfo (dogId){
@@ -41,6 +44,25 @@ const DogProfile = () => {
         return myQueryResponse.data.me;
     }
     const myDetails = myInfo();
+
+    const handleImageDelete = async (event) => {
+
+        event.preventDefault();
+        const imageVal = event.currentTarget;
+  
+        // check if form has everything (as per react-bootstrap docs)
+  
+        try {
+
+         await deleteImage({
+            variables: { dogId: dogDetails._id, id: imageVal.id}
+          });
+        } catch (err) {
+          console.error(err);
+        }
+    };
+
+    /*-------------------------------------
 
     const [userQueryResponse, {loading, error, data}] = useLazyQuery(GET_USER);
 
@@ -70,6 +92,8 @@ const DogProfile = () => {
         }
     }
 
+    -------------------------------------*/
+
     return (
         <>
 
@@ -79,6 +103,8 @@ const DogProfile = () => {
                         <h2>Age: {dogDetails.age}</h2>
                         <h2>Breed: {dogDetails.breed}</h2>
                         <h2>Owner: {dogDetails.username}</h2>
+                        
+                        <UploadImage dogDetails={dogDetails.name}/>
                         <UpdateDog /><DeleteDog />
                     </Container>
 
@@ -107,9 +133,11 @@ const DogProfile = () => {
 
                     dogDetails.images.map((image) => {
                         return (
-                    <Col>
-                        <Image className="dog-images" src={image.link} alt={`Images of dog`} thumbnail/>
-                        <div link={`/dog-image/${image._id}`}></div>
+                    <Col key={`/dog-image/${image._id}-col`}>
+                        <Link key={`/dog-image/${image._id}-link`} to={`/dog-image/${image._id}`}>
+                        <Image className="dog-images" src={image.link} alt={`Images of dog`} key={`/dog-image/${image._id}-image`} thumbnail/>
+                        </Link>
+                        <Button id={image._id} variant="danger" onClick={handleImageDelete} key={`/dog-image/${image._id}-delButton`}>X</Button>
                     </Col>);
                     })
                     }

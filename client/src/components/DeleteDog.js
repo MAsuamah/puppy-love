@@ -5,8 +5,7 @@ import { useParams } from 'react-router-dom';
 import { useMutation, useQuery } from '@apollo/client';
 import Auth from '../utils/auth';
 import{ DELETE_DOG } from '../utils/mutations';
-import { GET_ME } from '../utils/queries';
-import {Link} from "react-router-dom";
+
 
 function DeleteDog() {
   const [deleteDog] = useMutation(DELETE_DOG);
