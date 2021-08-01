@@ -28,13 +28,17 @@ The users can also make plans for meeting up.
 
 ## Current Features
 
+### Login/SignUp
+Login or Signup to start making profiles for your dogs. You can also comment on other dogs and hopefully you'll be making friends for your pets in no time. 
+<img width="1439" alt="Screen Shot 2021-07-31 at 7 14 34 PM" src="https://user-images.githubusercontent.com/77217156/127754454-7b6dbc7c-32e6-4cee-b63c-f1044b6debd7.png">
+
 ### Dog Catalogue
+On the landing page you will find Dogs that your dog can make friends with! Click on their image to be taken to their comments. 
 ![screencapture-localhost-3000-2021-08-01-10_43_29](https://user-images.githubusercontent.com/77217156/127775188-e76ac1fa-fde3-4c80-830b-81093da46685.png)
 
-
-
-### Login/SignUp
-<img width="1439" alt="Screen Shot 2021-07-31 at 7 14 34 PM" src="https://user-images.githubusercontent.com/77217156/127754454-7b6dbc7c-32e6-4cee-b63c-f1044b6debd7.png">
+### Comments
+Here you can read comments that other users have written about the dog. You will also be able to add your own comments and view the dog's profile.
+![screencapture-localhost-3000-dog-image-6106b07f7f52a155ab7e95f0-2021-08-01-10_51_13](https://user-images.githubusercontent.com/77217156/127775361-a320a50c-28ac-4f25-87e5-7c129679aa4e.png)
 
 ### Add a Pet
 <img width="1434" alt="Screen Shot 2021-07-31 at 7 16 26 PM" src="https://user-images.githubusercontent.com/77217156/127754472-b3d964db-2f48-4bd7-a2f1-d8c49d834e7d.png">
@@ -44,9 +48,6 @@ The users can also make plans for meeting up.
 
 ### Dog Profile
 ![screencapture-localhost-3000-dog-profile-610699484b6a904e7d70085f-2021-08-01-09_37_38](https://user-images.githubusercontent.com/77217156/127772945-3ccb2880-cffd-4d1a-9838-feb4cdb2829e.png)
-
-### Comments
-![screencapture-localhost-3000-dog-image-6106b07f7f52a155ab7e95f0-2021-08-01-10_51_13](https://user-images.githubusercontent.com/77217156/127775361-a320a50c-28ac-4f25-87e5-7c129679aa4e.png)
 
 
 ## Future Developments
