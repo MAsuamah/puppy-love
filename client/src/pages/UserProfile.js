@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import '../assets/styles/UserProfile.css'
 import {FaRegUserCircle} from 'react-icons/fa';
+import {BiBone} from 'react-icons/bi';
 import {FiMail} from 'react-icons/fi';
 import {MdLocationCity} from 'react-icons/md';
 import UpdateUser from '../components/UpdateUser';
@@ -51,7 +52,7 @@ const UserProfile = () => {
       <div className="dog-list"> 
         <ul>
          {userData.dogs.map((dog) => {
-          return (<li key={dog._id}><Link key={dog._id} to={`/dog-profile/${dog._id}`}>{dog.name}'s Profile</Link></li>);
+          return (<li key={dog._id}><Link key={dog._id} to={`/dog-profile/${dog._id}`}><BiBone/>{dog.name}'s Profile<BiBone/></Link></li>);
         })}
         </ul>
       </div>

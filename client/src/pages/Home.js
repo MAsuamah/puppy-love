@@ -43,13 +43,15 @@ function Home() {
         </h1>
         <p id="meet-pups"><FaArrowAltCircleDown id="pup-arrow"/> Meet Some Pups</p>
       </div>
-      <h1 className="header-styling">Gallery!</h1>
+  {/*     <h1 className="header-styling">Gallery!</h1> */}
       <div className="dog-members">
+        <ul className="dog-ul">
           {token && allDogImages.map((images => {
-          return (<li key={images._id}><Link key={`/dog-image/${images._id}`} to={`/dog-image/${images._id}`}>
+          return (<li className="dog-li" key={images._id}><Link key={`/dog-image/${images._id}`} to={`/dog-image/${images._id}`}>
           <Image className="dog-images" src={images.link} alt={`Images of dog`} key={`/dog-image/${images._id}`} thumbnail/>
           </Link></li>);
         }))}
+        </ul>
       </div>
     </div>
   )
