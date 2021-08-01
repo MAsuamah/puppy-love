@@ -58,6 +58,7 @@ const typeDefs = gql`
     name: String
     caption: String
     link: String
+    dogId: ID
     createdAt: Date
     comments: [Comment]
     commentCount: Int

@@ -1,5 +1,5 @@
 const { User, Dog, Dates, Image, Comment} = require('../models');
-const { AuthenticationError, buildSchemaFromTypeDefinitions } = require('apollo-server-express');
+const { AuthenticationError } = require('apollo-server-express');
 const { signToken } = require('../utils/auth');
 const bcrypt = require('bcrypt');
 
@@ -57,7 +57,7 @@ const resolvers = {
       //searches by image id - for comment page
       image: async(parent, args, context) => {
         if(context.user) {
-        return await Image.findOne({_id: args._id});
+        return await Image.findOne({_id: args._id}).populate('comments');
       } throw new AuthenticationError('Not logged in');
       },
       //finds all dog images by dog id - for dog profile
@@ -181,7 +181,7 @@ const resolvers = {
       },
       addImage: async(parent, args, context) => {
           if(context.user) {
-            const image = await Image.create({link: args.link, name: args.name, caption: args.caption});
+            const image = await Image.create({link: args.link, name: args.name, dogId: args._id, caption: args.caption});
 
              await Dog.findOneAndUpdate({_id: args._id}, { $push: { images: image
             }}, {new: true}); 
@@ -218,7 +218,7 @@ const resolvers = {
         } throw new AuthenticationError('Not logged in');
       },
       addComment: async(parent, args, context) => {
-        
+
         if(context.user) {
           const commented = await Comment.create({username: context.user.username,
           commentText: args.commentText});
@@ -230,7 +230,7 @@ const resolvers = {
       },
       deleteComment: async(parent, args, context) => {
         if(context.user) {
-
+          
         const updatedImage = await Image.findOneAndUpdate(
           {_id: args.imageId},
           { $pull: {comments: args._id}},

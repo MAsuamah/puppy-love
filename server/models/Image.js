@@ -19,6 +19,9 @@ const imageSchema = new Schema(
             default: Date.now,
             get: createdAtVal => dateFormat(createdAtVal)
         },
+        dogId:{
+            type: Schema.Types.ObjectId,
+            ref: 'Dog'},
         comments:[{
             type: Schema.Types.ObjectId,
             ref: 'Comment'

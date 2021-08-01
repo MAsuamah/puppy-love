@@ -38,3 +38,20 @@
   }
 }
 
+.image-text{
+  color:rgb(255, 255, 255);
+}
+
+.dog-members{
+  display: flex;
+  flex-direction: row;
+
+}
+
+.header-styling{
+  padding-left: 40%;
+  border-color: black;
+  border-radius: 10%;
+  color: crimson;
+  font-weight: bolder;
+}
