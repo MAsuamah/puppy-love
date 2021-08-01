@@ -8,7 +8,6 @@ import { useMutation } from '@apollo/client';
 import { UPDATE_USER } from '../utils/mutations';
 
 function UpdateUser() {
-  const [lgShow, setLgShow] = useState(false);
   const [userFormData, setUserFormData] = useState({ email:'',password: '', city: ''})
   const [show, setShow] = useState(false);
 
@@ -39,19 +38,20 @@ function UpdateUser() {
       const userUpdated = await updateUser({
         variables: { email: userFormData.email, password: userFormData.password, city: userFormData.city }
       });
+
       handleClose(true);
     } catch(err){
       console.error(err);
     }
-    
+
   }
   return (
     <>
-      <Button className='user-btn' onClick={() => setLgShow(true)} variant="dark">Update Account</Button>
+      <Button className='user-btn' onClick={() => setShow(true)} variant="dark">Update Account</Button>
       <Modal
         size="lg"
-        show={lgShow}
-        onHide={() => setLgShow(false)}
+        show={show}
+        onHide={() => setShow(false)}
         aria-labelledby="example-modal-sizes-title-lg"
       >
         <Modal.Header closeButton>

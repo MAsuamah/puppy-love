@@ -80,6 +80,7 @@ const resolvers = {
           throw new AuthenticationError('No account found with this email');
         }
         const correctPw = await user.isCorrectPassword(password);
+
         if(!correctPw) {
           throw new AuthenticationError('Incorrect Password');
         }
@@ -92,6 +93,7 @@ const resolvers = {
         return { user, token };
       },
       updateUser: async(parent, args, context) => {
+
         const saltRounds = 10;
         const password = await bcrypt.hash(args.password, saltRounds);
 
