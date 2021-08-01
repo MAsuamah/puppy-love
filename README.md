@@ -14,9 +14,9 @@ The users can also make plans for meeting up.
 
 * `Given a site where I can find my dogs a playdate`
 * `When I load Puppy Love`
-* `I am presented with a gallery of dogs who are available for playdates and a navigation bar with the option to login/signup.`
+* `I am presented with a navigation bar with the option to login/signup.`
 * `When I click login/signup, a modal appears and gives me the option to login with my email address and password, or signup with a Username, email address, city and password.`
-* `When I am signed in, the navigation bar now has the options to view my user profile, add a pet, and logout.`
+* `When I am signed in, I can see a gallery of dogs, and the navigation bar now has the options to view my user profile, add a pet, and logout.`
 * `When I click 'Your Profile' I am presented with my email address, city, username, my own pets with a link to their profile, and the options to update or delete my account.`
 * `When I click my pet's profile I am presented with the pet's name, age, breed, gender, owner, the option to upload an image, update the pet, and delete the pet.`
 * `When I click 'Add a Pet' I am presented with a modal that allows me to add a new dog by entering it breed, age, name, and gender.`
@@ -34,7 +34,7 @@ Login or Signup to start making profiles for your dogs. You can also comment on 
 <img width="1439" alt="Screen Shot 2021-07-31 at 7 14 34 PM" src="https://user-images.githubusercontent.com/77217156/127754454-7b6dbc7c-32e6-4cee-b63c-f1044b6debd7.png">
 
 ### Dog Catalogue
-On the landing page you will find Dogs that your dog can make friends with! Click on their image to be taken to their comments. 
+Once your are logged in you will find dogs on the hompage that your dog can make friends with! Click on their image to be taken to their comments. 
 
 ![screencapture-localhost-3000-2021-08-01-10_43_29](https://user-images.githubusercontent.com/77217156/127775188-e76ac1fa-fde3-4c80-830b-81093da46685.png)
 
