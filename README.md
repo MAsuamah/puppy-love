@@ -14,13 +14,13 @@ The users can also make plans for meeting up.
 
 * `Given a site where I can find my dogs a playdate`
 * `When I load Puppy Love`
-* `I am presented with a catalogue of dogs who are available for playdates and a navigation bar with the option to login/signup.`
+* `I am presented with a gallery of dogs who are available for playdates and a navigation bar with the option to login/signup.`
 * `When I click login/signup, a modal appears and gives me the option to login with my email address and password, or signup with a Username, email address, city and password.`
 * `When I am signed in, the navigation bar now has the options to view my user profile, add a pet, and logout.`
 * `When I click 'Your Profile' I am presented with my email address, city, username, my own pets with a link to their profile, and the options to update or delete my account.`
 * `When I click my pet's profile I am presented with the pet's name, age, breed, gender, owner, the option to upload an image, update the pet, and delete the pet.`
 * `When I click 'Add a Pet' I am presented with a modal that allows me to add a new dog by entering it breed, age, name, and gender.`
-* `When I am on the homepage and click on a dog, I am taken to their dog profile where I can see their info such as age, gender, breed, city, images of the dog, and the dogs friend list.`
+* `When I am on the homepage and click on a dog, I am taken to their comments where I can read comments from other users and comment if I am logged in. I will also find a link to the dog's profile.`
 
 ### Wireframe
 ![screencapture-app-diagrams-net-2021-07-31-17_01_19](https://user-images.githubusercontent.com/77217156/127752324-2dab15f3-49e2-4e83-857a-2b78cb15a100.png)
