@@ -32,6 +32,13 @@
   padding-bottom: 100px;
 }
 
+
+.dog-li {
+  width: 50%;
+  position: relative;
+  left: 25%;
+}
+
 @media screen and (max-width: 575px) {
   #hero-tagline{
     padding: 6px;
