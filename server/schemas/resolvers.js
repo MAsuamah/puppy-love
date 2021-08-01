@@ -1,6 +1,7 @@
 const { User, Dog, Dates, Image, Comment} = require('../models');
-const { AuthenticationError } = require('apollo-server-express');
+const { AuthenticationError, buildSchemaFromTypeDefinitions } = require('apollo-server-express');
 const { signToken } = require('../utils/auth');
+const bcrypt = require('bcrypt');
 
 const resolvers = {
     Query: {
@@ -29,7 +30,7 @@ const resolvers = {
       /*"allUsers" is for testing purposes only */
       allUsers: async(parent, args, context) => {
         const userData = await User.find({})
-          .select('-__v -password')
+           .select('-__v -password')
           .populate('dogs').populate('friends');
           return userData;
       },
@@ -72,14 +73,14 @@ const resolvers = {
     },
     Mutation: {
       login: async(parent, { email, password }) => {
-        console.log("email "+email);
-        console.log('password '+password);
+
         const user = await User.findOne({ email });
+        
         if (!user) {
           throw new AuthenticationError('No account found with this email');
         }
         const correctPw = await user.isCorrectPassword(password);
-        console.log(correctPw)
+
         if(!correctPw) {
           throw new AuthenticationError('Incorrect Password');
         }
@@ -92,20 +93,23 @@ const resolvers = {
         return { user, token };
       },
       updateUser: async(parent, args, context) => {
-        console.log("UpdateUser: "+args.password);
+
+        const saltRounds = 10;
+        const password = await bcrypt.hash(args.password, saltRounds);
+
         if(context.user) {
         const user = await User.findOneAndUpdate(
           { _id: context.user._id}, 
           {
             email: args.email,
-            //password: args.password,
+            password: password,
             city: args.city
           },
            { new: true }
         );
-
+        
         const token = signToken(user);
-        return {token, user}
+        return { user, token };
         } throw new AuthenticationError('Not logged in');
 
       },
