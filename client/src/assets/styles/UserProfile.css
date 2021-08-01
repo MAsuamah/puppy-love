@@ -6,13 +6,19 @@
 }
 
 .user-profile {
+  display: flex;
   margin-top: 30px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 #user-info {
   display: flex;
-  position: relative;
-  left: 25%;
+  flex-wrap: wrap;
+  position: absolute;  
+  top: 20%;
+  margin: 0% 10%;
 }
 
 .user-icons {
@@ -21,14 +27,28 @@
   margin-top: 35px;
 }
 
-.update-user {
-  display: flex;
-  justify-content: center;
+#delete-btn, #cancel-btn {
+  position: absolute;
+  top: 80%;
+  right: 40%;
 }
 
 .user-btn {
   margin: 10px;
 } 
+
+.dog-list {
+  position: absolute;
+  top: 50%; 
+}
+
+.update-user {
+  position: absolute;
+  top: 75%; 
+  margin-left: 40rem;
+  display: flex;
+  justify-content: center;
+}
 
 #update-img {
   width: 700px;
@@ -36,7 +56,34 @@
   margin-left: 35px
 }
 
-.dog-list {
-  display: flex;
-  justify-content: center;
+@media screen and (max-width: 768px) { 
+  #user-info {
+    position: fixed;  
+    top: 20%;
+    margin: 0% 10%;
+  }
+  
+  .update-user {
+    right: 21%;
+  }
+
+  .user-btn {
+    height: 60px;
+    width:200px;
+  }
+}
+
+@media screen and (max-width: 575px) {
+  .user-icons {
+    padding: 0;
+    margin: 0;
+  }
+  .update-user {
+    right: 22%;
+  }
+  .user-btn {
+    height: 65px;
+    width:85px;
+    ;
+  }
 }

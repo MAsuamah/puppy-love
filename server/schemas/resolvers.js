@@ -1,6 +1,7 @@
 const { User, Dog, Dates, Image, Comment} = require('../models');
-const { AuthenticationError } = require('apollo-server-express');
+const { AuthenticationError, buildSchemaFromTypeDefinitions } = require('apollo-server-express');
 const { signToken } = require('../utils/auth');
+const bcrypt = require('bcrypt');
 
 const resolvers = {
     Query: {
@@ -29,8 +30,15 @@ const resolvers = {
       /*"allUsers" is for testing purposes only */
       allUsers: async(parent, args, context) => {
         const userData = await User.find({})
-          .select('-__v -password')
+           .select('-__v -password')
           .populate('dogs').populate('friends');
+          return userData;
+      },
+      /*"allUsers" is for testing purposes only */
+      allDogs: async(parent, args, context) => {
+        const userData = await Dog.find({})
+          .select('-__v')
+          .populate('dogs')
           return userData;
       },
       //searches by dog id - for dog profile
@@ -65,11 +73,14 @@ const resolvers = {
     },
     Mutation: {
       login: async(parent, { email, password }) => {
+
         const user = await User.findOne({ email });
+        
         if (!user) {
           throw new AuthenticationError('No account found with this email');
         }
         const correctPw = await user.isCorrectPassword(password);
+
         if(!correctPw) {
           throw new AuthenticationError('Incorrect Password');
         }
@@ -82,29 +93,46 @@ const resolvers = {
         return { user, token };
       },
       updateUser: async(parent, args, context) => {
+
+        const saltRounds = 10;
+        const password = await bcrypt.hash(args.password, saltRounds);
+
         if(context.user) {
-        return await User.findOneAndUpdate(
-          { _id: args._id}, 
+        const user = await User.findOneAndUpdate(
+          { _id: context.user._id}, 
           {
-            username: args.username,
             email: args.email,
-            password: args.password,
+            password: password,
             city: args.city
           },
            { new: true }
         );
+        
+        const token = signToken(user);
+        return { user, token };
         } throw new AuthenticationError('Not logged in');
+
       },
       deleteUser: async(parent, args, context) => {
-         if(context.user) {
-          const correctPw = await context.user.isCorrectPassword(args.password);
+          const user = await User.findOne({ _id: args._id });
+
+          if(context.user) {
+          const correctPw = await user.isCorrectPassword(args.password);
           if(!correctPw) {
             throw new AuthenticationError('Incorrect Password');
           }
-        return await User.findOneAndDelete(
+
+          else{
+          const userName = await User.findById({_id: args._id}).select('username');
+          await Dog.deleteMany({username: userName.username});}
+
+          await User.findOneAndDelete(
           { _id: args._id }
         );
+
          } throw new AuthenticationError('Not logged in');
+
+         
       },
       addDog: async(parent, args, context) => {
         if(context.user) {
