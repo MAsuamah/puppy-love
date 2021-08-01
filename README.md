@@ -31,7 +31,9 @@ The users can also make plans for meeting up.
 ## Current Features
 
 ### Dog Catalogue
-`Coming Soon`
+![screencapture-localhost-3000-2021-08-01-10_43_29](https://user-images.githubusercontent.com/77217156/127775188-e76ac1fa-fde3-4c80-830b-81093da46685.png)
+
+
 
 ### Login/SignUp
 <img width="1439" alt="Screen Shot 2021-07-31 at 7 14 34 PM" src="https://user-images.githubusercontent.com/77217156/127754454-7b6dbc7c-32e6-4cee-b63c-f1044b6debd7.png">
