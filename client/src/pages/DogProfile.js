@@ -1,7 +1,7 @@
 import { useQuery, useLazyQuery, useMutation } from '@apollo/client';
 import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Image, Button} from 'react-bootstrap';
-import { ADD_FRIEND, REMOVE_FRIEND, ADD_IMAGE, DELETE_IMAGE } from '../utils/mutations';
+import { ADD_FRIEND, REMOVE_FRIEND, DELETE_IMAGE } from '../utils/mutations';
 import { GET_SINGLE_DOG, GET_USER, GET_ME } from '../utils/queries';
 import '../assets/styles/DogPages.css'
 import { FaDog } from "react-icons/fa";
@@ -9,13 +9,13 @@ import Auth from '../utils/auth';
 import { useParams } from 'react-router-dom';
 import UpdateDog from '../components/UpdateDog';
 import DeleteDog from '../components/DeleteDog';
+import UploadImage from '../components/UploadImage';
 import {Link} from "react-router-dom";
 
 const DogProfile = () => {
 
     const [addFriend] = useMutation(ADD_FRIEND);
     const [removeFriend] = useMutation(REMOVE_FRIEND);
-    const [addImage] = useMutation(ADD_IMAGE);
     const [deleteImage] = useMutation(DELETE_IMAGE);
     const {dogId} = useParams();
 
@@ -44,28 +44,6 @@ const DogProfile = () => {
         return myQueryResponse.data.me;
     }
     const myDetails = myInfo();
-
-    const handleImageUpload = async (event) => {
-
-        event.preventDefault();
-  
-        // check if form has everything (as per react-bootstrap docs)
-        // const form = event.currentTarget;
-        // if (form.checkValidity() === false) {
-        //   event.preventDefault();
-        //   event.stopPropagation();
-        // }
-  
-        try {
-  
-         await addImage({
-            variables: { id: dogId, name: dogDetails.name, link: 'https://cdn.shopify.com/s/files/1/0272/4770/6214/articles/when-do-puppies-start-walking.jpg?v=1593020034', caption: 'test'}
-          });
-        } catch (err) {
-          console.error(err);
-          
-        }
-    };
 
     const handleImageDelete = async (event) => {
 
@@ -125,7 +103,8 @@ const DogProfile = () => {
                         <h2>Age: {dogDetails.age}</h2>
                         <h2>Breed: {dogDetails.breed}</h2>
                         <h2>Owner: {dogDetails.username}</h2>
-                        <Button className='user-btn' variant="danger" onClick={handleImageUpload}>Upload Image</Button>
+                        
+                        <UploadImage dogDetails={dogDetails.name}/>
                         <UpdateDog /><DeleteDog />
                     </Container>
 
@@ -154,11 +133,11 @@ const DogProfile = () => {
 
                     dogDetails.images.map((image) => {
                         return (
-                    <Col>
-                        <Link key={`/dog-image/${image._id}`} to={`/dog-image/${image._id}`}>
-                        <Image className="dog-images" src={image.link} alt={`Images of dog`} key={`/dog-image/${image._id}`} thumbnail/>
+                    <Col key={`/dog-image/${image._id}-col`}>
+                        <Link key={`/dog-image/${image._id}-link`} to={`/dog-image/${image._id}`}>
+                        <Image className="dog-images" src={image.link} alt={`Images of dog`} key={`/dog-image/${image._id}-image`} thumbnail/>
                         </Link>
-                        <Button id={image._id} variant="danger" onClick={handleImageDelete}>X</Button>
+                        <Button id={image._id} variant="danger" onClick={handleImageDelete} key={`/dog-image/${image._id}-delButton`}>X</Button>
                     </Col>);
                     })
                     }
