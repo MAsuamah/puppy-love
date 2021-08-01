@@ -63,8 +63,8 @@ The dog profile allows you to view its gender, breed, age, and owner. For your o
 ### Ability to Organize Doggy Dates and Search Nearby Dog Parks
 As the wireframe shows we would like to add the ability for pups to plan meetups right on the website. When your visit a dog profile you should be able to find a middle button click it select a date to meetup. We would also like to implement a map where users can find nearby dog parks.
 
-### Add Friends ?
-`Coming Soon`
+### Add Friends 
+In the future, Puppy Love users would have the ability to add friends. When you visit a dog's profile an `Add Friend button` appears and you can click it to the dog to your dog's friend list. The dog's friend list would then be visible when you visit the dog's profile page.
 
 ## Getting Started
 
