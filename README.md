@@ -2,7 +2,8 @@
 
 Puppy Love is an app designed to find man's best friend a friend. Join the community of dog lovers online and set up doggy dates. Help spread love in the world, Puppy Love.
 
-<img width="1440" alt="Screen Shot 2021-07-31 at 7 12 17 PM" src="https://user-images.githubusercontent.com/77217156/127754407-7187d9bc-be5e-4d63-832f-903b996b3d07.png">
+<img width="1440" alt="Screen Shot 2021-08-01 at 9 28 58 AM" src="https://user-images.githubusercontent.com/77217156/127772671-60893eb5-42ae-421c-8f85-41eb51e911cb.png">
+
 
 
 ## Description
@@ -38,10 +39,11 @@ The users can also make plans for meeting up.
 <img width="1434" alt="Screen Shot 2021-07-31 at 7 16 26 PM" src="https://user-images.githubusercontent.com/77217156/127754472-b3d964db-2f48-4bd7-a2f1-d8c49d834e7d.png">
 
 ### User Profile
-`Coming Soon`
+![screencapture-localhost-3000-user-profile-2021-08-01-09_28_09](https://user-images.githubusercontent.com/77217156/127772711-158db1b1-9f09-4fae-b59b-a250a4f202ae.png)
 
 ### Dog Profile
-`Coming Soon`
+![screencapture-localhost-3000-dog-profile-610699484b6a904e7d70085f-2021-08-01-09_37_38](https://user-images.githubusercontent.com/77217156/127772945-3ccb2880-cffd-4d1a-9838-feb4cdb2829e.png)
+
 
 ## Future Developments
 
