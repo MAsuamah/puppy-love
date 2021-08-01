@@ -30,20 +30,27 @@ The users can also make plans for meeting up.
 
 ### Login/SignUp
 Login or Signup to start making profiles for your dogs. You can also comment on other dogs and hopefully you'll be making friends for your pets in no time. 
+
 <img width="1439" alt="Screen Shot 2021-07-31 at 7 14 34 PM" src="https://user-images.githubusercontent.com/77217156/127754454-7b6dbc7c-32e6-4cee-b63c-f1044b6debd7.png">
 
 ### Dog Catalogue
 On the landing page you will find Dogs that your dog can make friends with! Click on their image to be taken to their comments. 
+
 ![screencapture-localhost-3000-2021-08-01-10_43_29](https://user-images.githubusercontent.com/77217156/127775188-e76ac1fa-fde3-4c80-830b-81093da46685.png)
 
 ### Comments
 Here you can read comments that other users have written about the dog. You will also be able to add your own comments and view the dog's profile.
+
 ![screencapture-localhost-3000-dog-image-6106b07f7f52a155ab7e95f0-2021-08-01-10_51_13](https://user-images.githubusercontent.com/77217156/127775361-a320a50c-28ac-4f25-87e5-7c129679aa4e.png)
 
 ### Add a Pet
+Click "Add a Pet" in the navigation bar where you can enter your dog's breed, age, name, and gender. All of your pet's and their profiles will be accesible from your user profile.
+
 <img width="1434" alt="Screen Shot 2021-07-31 at 7 16 26 PM" src="https://user-images.githubusercontent.com/77217156/127754472-b3d964db-2f48-4bd7-a2f1-d8c49d834e7d.png">
 
 ### User Profile
+On your profile you will your email address, city, username, and your pets with a link to their profile. You can also update or delete your account.
+
 ![screencapture-localhost-3000-user-profile-2021-08-01-09_28_09](https://user-images.githubusercontent.com/77217156/127772711-158db1b1-9f09-4fae-b59b-a250a4f202ae.png)
 
 ### Dog Profile
