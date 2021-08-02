@@ -6,6 +6,7 @@ import FloatingLabel from 'react-bootstrap/FloatingLabel'
 import { useMutation } from '@apollo/client';
 import { ADD_DOG } from '../utils/mutations';
 import { useHistory} from 'react-router';
+import validator from 'validator';
 
 function CreatePet() {
 
@@ -14,16 +15,12 @@ function CreatePet() {
     marginTop: '10px'
   }
 
-  // set initial form state
   const [dogFormData, setDogFormData] = useState({ name: '', breed: '', gender: '', age: '' });
   
- // implement addUser Mutation
    const [addDog] = useMutation(ADD_DOG);
 
-   // set state for form validation
   const [validated] = useState(false);
 
-  // set state for alert
   const [showAlert, setShowAlert] = useState(false);
 
   const history = useHistory();
@@ -36,12 +33,9 @@ function CreatePet() {
   const handleDogFormSubmit = async (event) => {
     event.preventDefault();
 
-    // check if form has everything (as per react-bootstrap docs)
-    const form = event.currentTarget;
-    if (form.checkValidity() === false) {
-      event.preventDefault();
-      event.stopPropagation();
-    }
+    if(validator.isNumeric(parseInt(dogFormData.age))
+    && validator.isAlpha(dogFormData.breed) && validator.isAlpha(dogFormData.gender) && validator.isAlpha(dogFormData.name)
+    && dogFormData.age && dogFormData.breed && dogFormData.gender && dogFormData.name) {
 
     try {
       const { data } = await addDog({variables: { ...dogFormData, age: parseInt(dogFormData.age)}
@@ -61,15 +55,23 @@ function CreatePet() {
 
       history.push('/user-profile');
       location.reload();
+    
+    } else {
+      setShowAlert(true);
+      event.preventDefault();
+      event.stopPropagation();
+    }
   };
+
 
 
   return (
     <Form noValidate validated={validated} onSubmit={handleDogFormSubmit}>
-      <FloatingLabel controlId="floatingName" label="Pet Name" className="mb-3">
       <Alert dismissible onClose={() => setShowAlert(false)} show={showAlert} variant='danger'>
           Something went wrong with your dog details!
         </Alert>
+
+      <FloatingLabel controlId="floatingName" label="Pet Name" className="mb-3">
 
         <Form.Control type="petName" name='name' onChange={handleDogInputChange}
             value={dogFormData.name} required placeholder="Name" />

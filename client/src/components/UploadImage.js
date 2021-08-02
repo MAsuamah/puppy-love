@@ -29,7 +29,6 @@ function UploadImage(dogDetails) {
     cloudName: 'web-dev-projs-jaim', 
     uploadPreset: 'ml_default'}, (error, result) => { 
       if (!error && result && result.event === "success") { 
-        console.log('Done! Here is the image info: ', result.info.url); 
 
         handleImageUpload(result.info.url);
       }

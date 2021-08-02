@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/MAsuamah/puppy-love#readme",
   "dependencies": {
+    "cloudinary": "^1.26.3",
     "cloudinary-react": "^1.7.0",
     "concurrently": "^6.2.0",
     "if-env": "^1.0.4"

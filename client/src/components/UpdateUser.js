@@ -2,13 +2,15 @@ import React, { useState } from 'react';
 import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
+import Alert from 'react-bootstrap/Alert'
 import FloatingLabel from 'react-bootstrap/FloatingLabel'
 import Auth from '../utils/auth';
 import { useMutation } from '@apollo/client';
 import { UPDATE_USER } from '../utils/mutations';
+import validator from 'validator';
 
-function UpdateUser() {
-  const [userFormData, setUserFormData] = useState({ email:'',password: '', city: ''})
+function UpdateUser(props) {
+  const [userFormData, setUserFormData] = useState({ email: props.userData.email, password: '', city: props.userData.city})
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -27,22 +29,24 @@ function UpdateUser() {
   const handleFormSubmit = async(event) => {
     event.preventDefault();
 
-    const form = event.currentTarget;
-    if(form.checkValidity()===false) {
-      event.preventDefault();
-      event.stopPropagation();
-    }
+    if(validator.isEmail(userFormData.email) 
+    && userFormData.email && userFormData.password && !validator.isNumeric(userFormData.city)) {
 
     try{
 
       const userUpdated = await updateUser({
         variables: { email: userFormData.email, password: userFormData.password, city: userFormData.city }
       });
-
+      setShowAlert(false);
       handleClose(true);
     } catch(err){
       console.error(err);
     }
+  } else {
+    setShowAlert(true);
+    event.preventDefault();
+    event.stopPropagation();
+  }
 
   }
   return (
@@ -63,6 +67,9 @@ function UpdateUser() {
           <img id="update-img" src={require(`../assets/images/josh-hild-tkn_izTEVGo-unsplash.jpg`).default} alt="dog owner holding their dog over there shoulder"></img>
           {/* FORM TO UPDATE USER*/}
           <Form>
+            <Alert dismissible onClose={() => setShowAlert(false)} show={showAlert} variant='danger'>
+              Something went wrong with your dog details!
+            </Alert>
             <FloatingLabel controlId="floatingEmail" label="Email address" className="mb-3">
               <Form.Control type="email" name="email" placeholder="name@example.com" onChange={handleInputChange} value={userFormData.email}/>
             </FloatingLabel>

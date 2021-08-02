@@ -2,14 +2,17 @@ import React, { useState } from 'react';
 import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
+import Alert from 'react-bootstrap/Alert'
 import FloatingLabel from 'react-bootstrap/FloatingLabel'
 import { useMutation } from '@apollo/client';
 import { UPDATE_DOG } from '../utils/mutations';
 import { useParams } from 'react-router-dom';
+import validator from 'validator';
 
-function UpdateDog() {
+function UpdateDog(props) {
+
   const [show, setShow] = useState(false);
-  const [dogFormData, setDogFormData] = useState({ name:'',breed: '', age: '', gender: ''})
+  const [dogFormData, setDogFormData] = useState({ name: props.dogDetails.name,breed: props.dogDetails.breed, age: props.dogDetails.age, gender: props.dogDetails.gender})
 
   const {dogId} = useParams();
 
@@ -29,11 +32,9 @@ function UpdateDog() {
   const handleFormSubmit = async(event) => {
     event.preventDefault();
 
-    const form = event.currentTarget;
-    if(form.checkValidity()===false) {
-      event.preventDefault();
-      event.stopPropagation();
-    }
+    if(validator.isNumeric(parseInt(dogFormData.age))
+    && validator.isAlpha(dogFormData.breed) && validator.isAlpha(dogFormData.gender) && validator.isAlpha(dogFormData.name)
+    && dogFormData.age && dogFormData.breed && dogFormData.gender && dogFormData.name) {
 
     try{
 
@@ -45,7 +46,13 @@ function UpdateDog() {
     } catch(err){
       console.error(err);
     }
+    setShowAlert(false);
     handleClose(true);
+  } else {
+    setShowAlert(true);
+    event.preventDefault();
+    event.stopPropagation();
+  }
   }
   
   return (
@@ -66,6 +73,9 @@ function UpdateDog() {
           <img id="update-img" src={require(`../assets/images/josh-hild-tkn_izTEVGo-unsplash.jpg`).default} alt="dog owner holding their dog over there shoulder"></img>
           {/* FORM TO UPDATE DOG*/}
           <Form>
+            <Alert dismissible onClose={() => setShowAlert(false)} show={showAlert} variant='danger'>
+            Something went wrong with your dog details!
+          </Alert>
             <FloatingLabel controlId="floatingName" label="Name" className="mb-3">
               <Form.Control type="name" name="name" placeholder={dogFormData.name} onChange={handleInputChange} value={dogFormData.name}/>
             </FloatingLabel>

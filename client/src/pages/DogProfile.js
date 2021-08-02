@@ -12,6 +12,7 @@ import DeleteDog from '../components/DeleteDog';
 import UploadImage from '../components/UploadImage';
 import {Link} from "react-router-dom";
 
+
 const DogProfile = () => {
 
     const [addFriend] = useMutation(ADD_FRIEND);
@@ -49,9 +50,7 @@ const DogProfile = () => {
 
         event.preventDefault();
         const imageVal = event.currentTarget;
-  
-        // check if form has everything (as per react-bootstrap docs)
-  
+
         try {
 
          await deleteImage({
@@ -105,7 +104,7 @@ const DogProfile = () => {
                         <h2>Owner: {dogDetails.username}</h2>
                         
                         <UploadImage dogDetails={dogDetails.name}/>
-                        <UpdateDog /><DeleteDog />
+                        <UpdateDog dogDetails={dogDetails}/><DeleteDog />
                     </Container>
 
                     {/* <Button as="input" type="button" value="Show Owner" onClick={() =>userQueryResponse({variables: {username: dogDetails.username}})}/>
@@ -137,7 +136,7 @@ const DogProfile = () => {
                         <Link key={`/dog-image/${image._id}-link`} to={`/dog-image/${image._id}`}>
                         <Image className="dog-images" src={image.link} alt={`Images of dog`} key={`/dog-image/${image._id}-image`} thumbnail/>
                         </Link>
-                        <Button id={image._id} variant="danger" onClick={handleImageDelete} key={`/dog-image/${image._id}-delButton`}>X</Button>
+                        <Button id={image._id} variant="danger" onClick={handleImageDelete} key={`/dog-image/${image._id}-delButton`} imagelink={image.link}>X</Button>
                     </Col>);
                     })
                     }
