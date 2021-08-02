@@ -1,7 +1,7 @@
 import React from 'react';
 import '../assets/styles/Home.css'
 import {BsHeartHalf} from 'react-icons/bs'
-import {FaArrowAltCircleDown} from 'react-icons/fa'
+import {FaArrowAltCircleDown, FaConnectdevelop} from 'react-icons/fa'
 import { useQuery} from '@apollo/client';
 import Auth from '../utils/auth';
 import {GET_ALL_DOGS, GET_ALL_IMAGES} from '../utils/queries'
@@ -24,6 +24,7 @@ function Home() {
        }
 
        const allDogsData = data.allDogs;
+       console.log(allDogsData);
 
        if (getDogImages.loading) {
         return <h2>LOADING...</h2>;
@@ -46,10 +47,10 @@ function Home() {
   {/*     <h1 className="header-styling">Gallery!</h1> */}
       <div className="dog-members">
         <ul className="dog-ul">
-          {token && allDogImages.map((images => {
-              let user = allDogsData.filter(user => user._id == images.dogId)
+          {token && allDogsData[allDogsData.length-1] && allDogImages.map((images => {
+              let user = allDogsData.filter(user => user._id == images.dogId);
 
-          return (<li className="dog-li" key={images._id}><Link key={`/dog-image/${images._id}`} to={`/dog-image/${images._id}/${user.username}`}>
+          return (<li className="dog-li" key={images._id}><Link key={`/dog-image/${images._id}`} to={`/dog-image/${images._id}/${user[0].username}`}>
           <Image className="dog-images" src={images.link} alt={`Images of dog`} key={`/dog-image/${images._id}`} thumbnail/>
           </Link></li>);
         }))}
