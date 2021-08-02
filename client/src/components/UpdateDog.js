@@ -32,7 +32,7 @@ function UpdateDog(props) {
   const handleFormSubmit = async(event) => {
     event.preventDefault();
 
-    if(validator.isNumeric(parseInt(dogFormData.age))
+    if(validator.isNumeric(dogFormData.age)
     && validator.isAlpha(dogFormData.breed) && validator.isAlpha(dogFormData.gender) && validator.isAlpha(dogFormData.name)
     && dogFormData.age && dogFormData.breed && dogFormData.gender && dogFormData.name) {
 
