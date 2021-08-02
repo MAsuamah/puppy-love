@@ -17,7 +17,7 @@ import { useHistory} from 'react-router';
 
 const DogImage = () => {
 
-    const {imageId} = useParams();
+    const {userName, imageId} = useParams();
     const history = useHistory();
     const [commentFormData, setCommentFormData] = useState({ comment:'' });
     const [showAlert, setShowAlert] = useState(false);
@@ -48,7 +48,7 @@ const DogImage = () => {
         try {
               const comment = await addComment ({ variables: {id: imageId, commentText: commentFormData.comment} });
 
-              history.push(`/dog-image/${imageId}`);
+              history.push(`/dog-image/${imageId}/${userName}`);
           }
           catch (e) {
             setShowAlert(true);
@@ -76,7 +76,7 @@ const DogImage = () => {
               console.error(err);
             }
             
-            location.replace(`/dog-image/${imageId}`);
+            location.replace(`/dog-image/${imageId}/${userName}`);
             event.stopPropagation();
         };
 
@@ -89,7 +89,8 @@ const DogImage = () => {
                 <div>{dogImage.comments && dogImage.comments.map((comment) => {
                 return <div className="comments" key={comment._id}>
                         Owner: @{comment.username} <span><br></br></span> {comment.commentText} <span><br></br></span> 
-                        ..commented at: {comment.createdAt} <Button id={comment._id} variant="danger" onClick={handleDelete}>X</Button></div>})}
+                        ..commented at: {comment.createdAt} 
+                        {userName == comment.username && <Button id={comment._id} variant="danger" onClick={handleDelete}>X</Button>}</div>})}
                         
                     </div>
             
