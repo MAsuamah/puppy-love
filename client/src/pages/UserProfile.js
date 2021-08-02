@@ -38,7 +38,7 @@ const UserProfile = () => {
     <>
     <Container fluid className="user-profile" >
       <div id="user-info">
-        <div id="u-info">
+   
           <div className="user-icons">  
             <p><FaRegUserCircle /> {userData.username}</p>
           </div>
@@ -48,7 +48,7 @@ const UserProfile = () => {
           <div className="user-icons">       
             <p><MdLocationCity /> {userData.city}</p>
           </div>
-        </div>
+  
       </div>
 
       <div className="dog-list"> 

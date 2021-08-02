@@ -9,13 +9,12 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center; 
-  margin-top: 50px;
+  margin-top: 90px;
 }
 
 .user-icons {
-  padding: 20px;
+  margin-right: 5px;
   font-size: 25px;
-  margin-top: 35px;
 }
 
 #delete-btn, #cancel-btn {
@@ -99,14 +98,6 @@
 */
 
 @media screen and (max-width: 890px) {
-  #user-info {
-    height: 100px;
-  }
-  #u-info {
-    position: relative;
-    margin-top: 0;
-    top: 25px;
-  }
 
   .dog-list {
     position: relative;
