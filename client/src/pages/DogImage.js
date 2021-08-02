@@ -9,17 +9,18 @@ import {useParams} from 'react-router-dom';
 import { useQuery, useMutation } from '@apollo/client';
 import Auth from '../utils/auth';
 import { GET_DOG_IMAGE } from '../utils/queries';
-
+import Alert from 'react-bootstrap/Alert'
 import { ADD_COMMENT,DELETE_COMMENT } from '../utils/mutations';
-import '../assets/styles/DogPages.css'
+import '../assets/styles/DogPages.css';
 import {Link} from "react-router-dom";
-
+import { useHistory} from 'react-router';
 
 const DogImage = () => {
 
     const {imageId} = useParams();
-
+    const history = useHistory();
     const [commentFormData, setCommentFormData] = useState({ comment:'' });
+    const [showAlert, setShowAlert] = useState(false);
     const [addComment] = useMutation(ADD_COMMENT);
     const [deleteComment] = useMutation(DELETE_COMMENT);
 
@@ -43,12 +44,22 @@ const DogImage = () => {
     const handleClick = async event => {
          event.preventDefault()
 
+         if(commentFormData.comment) {
         try {
               const comment = await addComment ({ variables: {id: imageId, commentText: commentFormData.comment} });
+
+              history.push(`/dog-image/${imageId}`);
           }
           catch (e) {
+            setShowAlert(true);
             console.error(e);
-        }
+        }}
+        else {
+            setShowAlert(true);
+            event.preventDefault();
+            event.stopPropagation();
+          }
+        
         };
 
         const handleDelete = async (event) => {
@@ -56,17 +67,17 @@ const DogImage = () => {
             event.preventDefault();
             const commentVal = event.currentTarget;
       
-            // check if form has everything (as per react-bootstrap docs)
-      
             try {
-      
-                console.log(dogImage._id +"+"+commentVal.id)
+
              await deleteComment({
                 variables: { imageId: dogImage._id, id: commentVal.id}
               });
             } catch (err) {
               console.error(err);
             }
+            
+            location.replace(`/dog-image/${imageId}`);
+            event.stopPropagation();
         };
 
     return (
@@ -74,7 +85,7 @@ const DogImage = () => {
             <Container fluid="true" className="image-container">
                 <Image src={dogImage.link}  alt={`Profile Image for dog`} fluid="true" thumbnail/>
                 <Link className="pet-profile-link" key={dogImage.dogId} to={`/dog-profile/${dogImage.dogId}`}>View Profile</Link>
-                <h1 className="header-styling">Dog's name: {dogImage.name}</h1>
+                <div className="dog-header header-styling">Dog's name: {dogImage.name}</div>
                 <div>{dogImage.comments && dogImage.comments.map((comment) => {
                 return <div className="comments" key={comment._id}>
                         Owner: @{comment.username} <span><br></br></span> {comment.commentText} <span><br></br></span> 
@@ -83,7 +94,9 @@ const DogImage = () => {
                     </div>
             
             <Form fluid="true" className="form-background">
-                
+                <Alert dismissible onClose={() => setShowAlert(false)} show={showAlert} variant='danger'>
+                Comment cannot be blank!
+                </Alert>
                 <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
                     <Form.Label className="image-text">Comment on </Form.Label>
                     <Form.Control as="textarea" type="comment" placeholder="Tell others how much you like their dog!" rows={3} name='comment' onChange={handleDogInputChange}

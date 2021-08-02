@@ -60,7 +60,7 @@ const UserProfile = () => {
       </div>
       
       <div className='update-user'>
-        <UpdateUser />
+        <UpdateUser userData={userData}/>
         <DeleteUser />      
       </div>
     </Container>

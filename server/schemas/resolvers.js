@@ -2,6 +2,7 @@ const { User, Dog, Dates, Image, Comment} = require('../models');
 const { AuthenticationError } = require('apollo-server-express');
 const { signToken } = require('../utils/auth');
 const bcrypt = require('bcrypt');
+var cloudinary = require('cloudinary').v2;
 
 const resolvers = {
     Query: {
@@ -172,6 +173,11 @@ const resolvers = {
               throw new AuthenticationError("Couldn't find this dog");
             }
             else {
+
+              await Image.deleteMany(
+                { dogId: args._id }
+              );
+
               await Dog.findOneAndDelete(
                 { _id: args._id }
               );
@@ -209,9 +215,19 @@ const resolvers = {
           throw new AuthenticactionError("Couldn't find this dog");
         }
 
-        await Image.findOneAndDelete(
+        const imageLink = await Image.findOneAndDelete(
           {_id: args._id}
         ); 
+
+        // cloudinary.config({ 
+        //     cloud_name: 'web-dev-projs-jaim', 
+        //     api_key: '328367657729691', 
+        //     api_secret: '6vGJblMTMNME8wp7cL67WgY_pZQ',
+        //     secure: true
+        //   });
+          
+        //   cloudinary.uploader.destroy(`puppy-love/${(imageLink.link).split("/puppy-love/")[1].split(".jpg")[0]}`, function(error,result) {
+        //     console.log(result, error) });
         
         return updatedDog;
 
