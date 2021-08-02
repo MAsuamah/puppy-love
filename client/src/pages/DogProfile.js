@@ -102,9 +102,9 @@ const DogProfile = () => {
                         <h2>Age: {dogDetails.age}</h2>
                         <h2>Breed: {dogDetails.breed}</h2>
                         <h2>Owner: {dogDetails.username}</h2>
-                        
+                         {myDetails.username == dogDetails.username && <span>
                         <UploadImage dogDetails={dogDetails.name}/>
-                        <UpdateDog dogDetails={dogDetails}/><DeleteDog />
+                        <UpdateDog dogDetails={dogDetails}/><DeleteDog /></span>}
                     </Container>
 
                     {/* <Button as="input" type="button" value="Show Owner" onClick={() =>userQueryResponse({variables: {username: dogDetails.username}})}/>
@@ -133,10 +133,10 @@ const DogProfile = () => {
                     dogDetails.images.map((image) => {
                         return (
                     <Col key={`/dog-image/${image._id}-col`}>
-                        <Link key={`/dog-image/${image._id}-link`} to={`/dog-image/${image._id}`}>
+                        <Link key={`/dog-image/${image._id}-link`} to={`/dog-image/${image._id}/${dogDetails.username}`}>
                         <Image className="dog-images" src={image.link} alt={`Images of dog`} key={`/dog-image/${image._id}-image`} thumbnail/>
                         </Link>
-                        <Button id={image._id} variant="danger" onClick={handleImageDelete} key={`/dog-image/${image._id}-delButton`} imagelink={image.link}>X</Button>
+                        {myDetails.username == dogDetails.username && <Button id={image._id} variant="danger" onClick={handleImageDelete} key={`/dog-image/${image._id}-delButton`} imagelink={image.link}>X</Button>}
                     </Col>);
                     })
                     }

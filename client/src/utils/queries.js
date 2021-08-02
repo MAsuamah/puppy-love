@@ -99,6 +99,7 @@ export const GET_ALL_DOGS = gql`
       name
       breed
       gender
+      username
       age
       images{
           _id

@@ -1,17 +1,18 @@
 import React, { useState } from 'react';
 import Modal from 'react-bootstrap/Modal'
-import Button from 'react-bootstrap/Button'
-
+import Button from 'react-bootstrap/Button';
 import { useMutation, useQuery } from '@apollo/client';
 import Auth from '../utils/auth';
 import{ DELETE_USER } from '../utils/mutations';
 import { GET_ME } from '../utils/queries';
 import { Form } from 'react-bootstrap';
 import { useHistory} from 'react-router';
+import Alert from 'react-bootstrap/Alert';
 
 function DeleteUser() {
   const [deleteUser] = useMutation(DELETE_USER);
   const [show, setShow] = useState(false);
+  const [showAlert, setShowAlert] = useState(false);
   const [formData, setFormData] = useState({ password: '' });
 
   const handleClose = () => setShow(false);
@@ -28,33 +29,31 @@ function DeleteUser() {
   const handleDelete = async (event) => {
       event.preventDefault();
 
-      // check if form has everything (as per react-bootstrap docs)
-      const form = event.currentTarget;
-      if (form.checkValidity() === false) {
-        event.preventDefault();
-        event.stopPropagation();
-      }
+      if(formData.password) {
 
       try {
 
        await deleteUser({
           variables: { id: data.me._id, password: formData.password}
         });
-        // await deleteUser({
-        //    _id: data.me_id, password: formData.password
-        // });
 
       } catch (err) {
         console.error(err);
         
       }
+      setShowAlert(false);
       handleClose(true);
-      //Auth.logout;
+
       setFormData({
         password: ''
       });
       history.push('/');
       Auth.logout();
+    } else {
+      setShowAlert(true);
+      event.preventDefault();
+      event.stopPropagation();
+    }
   };
 
   return (
@@ -74,6 +73,9 @@ function DeleteUser() {
         </Modal.Header>
         <Modal.Body>
           <Form.Group>
+          <Alert dismissible onClose={() => setShowAlert(false)} show={showAlert} variant='danger'>
+              Something went wrong with your dog details!
+            </Alert>
             Deleting your account is a permanent action. Please enter your password to proceed.
           <Form.Control
             type='password'

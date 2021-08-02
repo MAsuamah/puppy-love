@@ -23,7 +23,7 @@ function Home() {
          throw new Error('You need to be logged in to view this page.');
        }
 
-       const allDogsData = data;
+       const allDogsData = data.allDogs;
 
        if (getDogImages.loading) {
         return <h2>LOADING...</h2>;
@@ -47,7 +47,9 @@ function Home() {
       <div className="dog-members">
         <ul className="dog-ul">
           {token && allDogImages.map((images => {
-          return (<li className="dog-li" key={images._id}><Link key={`/dog-image/${images._id}`} to={`/dog-image/${images._id}`}>
+              let user = allDogsData.filter(user => user._id == images.dogId)
+
+          return (<li className="dog-li" key={images._id}><Link key={`/dog-image/${images._id}`} to={`/dog-image/${images._id}/${user.username}`}>
           <Image className="dog-images" src={images.link} alt={`Images of dog`} key={`/dog-image/${images._id}`} thumbnail/>
           </Link></li>);
         }))}
