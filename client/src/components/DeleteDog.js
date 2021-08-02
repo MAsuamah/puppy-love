@@ -9,6 +9,7 @@ import { useHistory} from 'react-router';
 
 
 function DeleteDog() {
+
   const [deleteDog] = useMutation(DELETE_DOG);
   const [show, setShow] = useState(false);
   const history = useHistory();
